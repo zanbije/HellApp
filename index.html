@@ -1,0 +1,382 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/iconfont.css">
+    <style>
+        header{ padding-bottom: 0.05rem; height: auto; background-color: #323232;}
+        header ul li { height: 2.25rem; line-height: 2.25rem; text-align: center; display: none; color: #323232; position: relative;font-size: 0.9rem;  }
+        header ul li.active{ display: block;}
+        #footer{ padding-top: 0.05rem; background-color: #323232;}
+        #footer ul li{  height: 2.25rem; padding-top: 1.25rem; padding-bottom: 1px; background: url() no-repeat center 2px; font-size: 0.6rem;background-size: auto 1.1rem; text-align: center; }
+        #footer ul li.active{ color: #ffcc00; }
+        #footer ul li:nth-child(1){ background-image: url(./image/shouye.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/zhibo.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/baohe.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/faxian.png); }
+        #footer ul li:nth-child(5){ background-image: url(./image/wode.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/shouye2.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/zhibo2.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/baohe2.png; }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/faxian2.png); }
+        #footer ul li:nth-child(5).active{ background-image: url(./image/wode2.png); }
+        .flex-con{ overflow: auto; background-color:#323232; }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+          <li class="border-b active"  id="hbbox" style="color:#000000"></li>
+          <li class="border-b" style="color:#FFF">直播大厅</li>
+          <li class="border-b" style="color:#FFF">福利宝盒</li>
+          <li class="border-b" style="color:#FFF">福利社</li>
+          <li class="border-b" style="color:#FFF">会员中心</li>
+        </ul>
+    </header>
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+          <li tapmode="hover" onClick="randomSwitchBtn( this );" class="flex-con active" >首页</li>
+          <li tapmode="hover" onClick="randomSwitchBtn( this );" class="flex-con" >直播</li>
+          <li tapmode="hover" onClick="zhiboList();" class="flex-con" >福利宝盒</li>
+          <li tapmode="hover" onClick="randomSwitchBtn( this );" class="flex-con" >福利社</li>
+          <li tapmode="hover" onClick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/x-dot-template" id="hongbaotpl">
+<img style="position: absolute;width: 1.5rem;top: 0.3rem;right: 0.5rem;" onclick="toBanner('{{=it.linkurl}}')">{{=it.name}}
+</script>
+<script type="text/javascript" src="js/public.js"></script>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/doT.js"></script>
+<script type="text/javascript" src="script/auipullrefresh.js"></script>
+<script type="text/javascript" src="script/auislide.js"></script>
+<script type="text/javascript" src="script/auilazyload.js" ></script>
+<script type="text/javascript">
+    var hongbaoid = $api.byId('hbbox');
+    var hongbaotpl = $api.byId('hongbaotpl');
+    var uid  =  '';
+
+    apiready = function () {
+
+        $api.fixStatusBar( $api.dom('header') ); //适配IPhone X footer的问题
+        $api.fixTabBar( $api.byId('footer') ); //适配IPhone X footer的问题
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: 'rgba(0,0,0,0)'
+        });
+        if (localStorage.getItem('user_id')>1) {
+          uid = localStorage.getItem('user_id');
+        }else {
+          uid = 0;
+        }
+                api.ajax({
+		        url: service_url+'/app/nav/on',
+		        method: 'get',
+		    },function(ret, err){
+		        if (ret) {
+		         for(var p in ret){//遍历json数组时，这么写p为索引，0,1
+
+//				if(ret[p].id==23){
+//					localStorage.setItem('api_url',ret[p].content);
+//				}
+				if(ret[p].id==20){
+					localStorage.setItem('na',ret[p].content);
+				}
+		        }
+
+		        } else {
+		            alert( '网络错误' );
+		            api.hideProgress();
+		        }
+		    });
+
+            api.ajax({
+		        url: service_url+'/app/nav',
+		        method: 'get',
+		    },function(ret, err){
+		        if (ret) {
+		          //渲染模板
+		          var pagefn = doT.template(hongbaotpl.text);
+		          ret.hb['name']=localStorage.getItem('na');
+		          hongbaoid.innerHTML = pagefn(ret.hb);
+		//      alert( JSON.stringify( ret.banner ) );
+
+
+		        } else {
+		            alert( '网络错误' );
+		            api.hideProgress();
+		        }
+		    });
+        api.ajax({
+            url: service_url+'/login/login/tongji.html',
+            method: 'get',
+            data: {
+                values: {
+                    os: api.systemType,
+                    imei: api.deviceId,
+                    uid:uid
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+
+                //alert( JSON.stringify( ret ) );
+            } else {
+                //alert( JSON.stringify( err ) );
+                alert('似乎没有网络！请尝试重启APP');
+            }
+        });
+
+        funIniGroup();
+
+
+
+
+        var user_id = localStorage.getItem('user_id');
+        if (user_id>1) {
+
+          api.ajax({
+              url: api_url+'/login/login/imei.html',
+              method: 'get',
+              data: {
+                  values: {
+                      uid: user_id
+                  }
+              }
+          },function(ret, err){
+              if (ret) {
+
+                  if (ret.msg.imei!=api.deviceId) {
+                    localStorage.setItem('user_id','');
+                    localStorage.setItem('user_name','');
+                    localStorage.setItem('user_time','');
+                    api.sendEvent({
+                      name: 'newLoingdata',
+                      extra: {
+                      }
+                    });
+
+                    api.alert({
+                        title: '登陆信息已过期',
+                        msg: '请重新登陆',
+                    });
+
+                  }
+              } else {
+
+              }
+          });
+        }
+
+    }
+
+    function funIniGroup(){
+        var eHeaderLis = $api.domAll('header li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+            if(i==1)
+            {
+               frames.push({
+                name: 'frame'+i,
+                url: './html/frame'+i+'.html',
+                bgColor : '#323232',
+                bounces:true,
+                  rect: {
+                      x: 0,
+                      y: document.querySelector( 'header' ).offsetHeight,
+                      h: api.winHeight - document.querySelector( 'header' ).offsetHeight
+                  }
+               })
+            }
+            else
+            {
+                frames.push({
+                name: 'frame'+i,
+                url: './html/frame'+i+'.html',
+                bgColor : '#323232',
+                bounces:true,
+                  rect: {
+                      x: 0,
+                      y: document.querySelector( 'header' ).offsetHeight,
+                      h: api.winHeight - document.querySelector( 'header' ).offsetHeight
+                  }
+               })
+            }
+
+
+        }
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth,
+                h: $api.dom('#main').offsetHeight
+            },
+            index: 0,
+            frames: frames
+        }, function (ret, err) {
+
+        });
+    }
+
+function zhiboList(){
+	var delay = 0;
+	if(api.systemType != 'ios'){
+			delay = 300;
+	}
+	api.openWin({
+			name: 'zhibo_win',
+			url: './html/zhibo_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+  function toBanner(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: 'html/login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'so_win',
+          url: 'html/so_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'so_win',
+          url: 'html/so_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: 'html/open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag ) {
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+</script>
