@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><widget id="A6095856680924" security="false" version="0.0.1">
+  <name>天天影视</name>
+  <description>Example For APICloud.</description>
+  <author email="developer@apicloud.com" href="http://www.apicloud.com">Developer</author>
+  <content src="index.html"/>
+  <preference name="pageBounce" value="false"/>
+  <preference name="appCertificateVerify" value="false"/>
+  <preference name="appBackground" value="rgba(0,0,0,0.0)"/>
+  <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>
+  <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>
+  <preference name="customRefreshHeader" value="pullRefreshLoop"/>
+  <preference name="hScrollBarEnabled" value="false"/>
+  <preference name="vScrollBarEnabled" value="false"/>
+  <preference name="autoLaunch" value="true"/>
+  <preference name="fullScreen" value="false"/>
+  <preference name="autoUpdate" value="true"/>
+  <preference name="smartUpdate" value="true"/>
+  <preference name="debug" value="false"/>
+  <preference name="statusBarAppearance" value="true"/>
+  <permission name="readPhoneState"/>
+  <permission name="camera"/>
+  <permission name="record"/>
+  <permission name="location"/>
+  <permission name="fileSystem"/>
+  <permission name="internet"/>
+  <permission name="bootCompleted"/>
+  <permission name="hardware"/>
+	<preference name="forbiddenSchemes" value="alipay,alipays,tmall,taobao,itaobao,alipayshare,alipayqr,taobaohd,zhuzhancaipiao4ipad,laiwangc6e34c6bf,mdict,omnifocus,qqnew,qqnews,iqiyi,qiyi-iphone,ppstream,QIYIHD-iPad,sohu-SViPad,sohuvideohd,sohuvideo-iphone,sohuvideo,youku,LetviPhone,bilibili,tudou,pptv,imgotv,funshionmovieiphone,com.baofeng.play,baiduvideoiphone,bdviphapp,tenvideohd,tenvideo,tenvideo2,tenvideo3,alipay://,alipays://,alipayshare://,tmall://,taobao://,itaobao://,taobaohd://,zhuzhancaipiao4ipad://,laiwangc6e34c6bf://,qqnew://,qqnews://,iqiyi://,qiyi-iphone://,ppstream://,QIYIHD-iPad://,sohu-SViPad://,sohuvideohd://,sohuvideo-iphone://,sohuvideo://,youku://,LetviPhone://,bilibili://,tudou://,pptv://,imgotv://,funshionmovieiphone://,baiduvideoiphone://,bdviphapp://,tenvideohd://,tenvideo://,tenvideo2://,tenvideo3://,com.56Video://com.baofeng.play://"/>
+  <feature name="QQPlus">
+    <param name="urlScheme" value="tencent101525461"/>
+    <param name="apiKey" value="101525461"/>
+  </feature>
+  <feature name="wx">
+   <param name="urlScheme" value="wx86e2659867ccb2aa"/>
+   <param name="apiKey" value="wx86e2659867ccb2aa"/>
+   <param name="apiSecret" value="c67a6f38932aa99bc86b3c3def3405c8"/>
+
+ </feature>
+ 	<feature name="smsVerify">
+		<param name="android_app_key" value="291776df6d33e"/>
+		<param name="android_app_secret" value="aeedca56cdcec319c9b4f6e24ac42d72"/>
+ </feature>
+</widget>

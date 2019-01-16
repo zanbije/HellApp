@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body bgcolor="#ffffff">
+
+    <!-- <div id="weichat1" class="open-vip-b-kefux">
+            付款中心
+    </div> -->
+    <div class="zhif">
+        <div class="zhifx">请扫描下面的二维码</div>
+
+    </div>
+
+
+  <div class="open-vip-b">
+    <div class="open-vip-b-box">
+      <div id="imgurl" class="open-vip-b-kaxx">
+        <img id="imgurl1" src="http://tv.beben.cn/img/weixindl.png">
+
+      </div>
+      <div class="open-vip-b-text" style="">
+      	截图保存二维码，微信扫码付款，付款成功后！<br/>
+      	在微信钱包的支付明细里，复制交易订单号
+      </br>在下面输入交易订单号，开通代理！</br>
+      </div>
+
+			<div id="weichat" class="open-vip-b-kefu">
+			 <input type="text" id="czdh" style="border: #808080 solid 1px;height: 35px;" placeholder="在此处粘贴交易订单号"/>
+			 </div>
+
+			<div id="weichat" class="open-vip-b-kefu">
+
+			<input type="button" id="kaitong" class="aui-btn aui-btn-danger aui-btn-block" value="开通代理" onclick="tjfkbh()"/>
+			</div>
+
+      <div id="weichat" class="open-vip-b-kefu">
+
+         <span id="kfqqlx"> 遇到问题请联系客服QQ：</span></br>
+					<font color="#FF2600" >不会操作？</font></br></br>
+<input type="button" id="kaitong" class="aui-btn aui-btn-primary" value="查看教程" onclick="ckjc()"/></br></br>
+      </div>
+
+
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+	var glqq = localStorage.getItem('glqqkf');
+	apiready = function(){
+		api.parseTapmode();
+		// newLoingdata();
+		kfqqlx.innerHTML='有问题请联系客服QQ:'+glqq;
+		}
+	 function ckjc(){
+		api.openWin({
+				name: 'fkjc',
+				url: './fkjc.html',
+				delay: 300,
+		});
+	}
+
+	function sjmp() {
+				var now = new Date();
+				var year = now.getFullYear();
+				var month = now.getMonth();
+				var date = now.getDate();
+				month = month + 1;
+				if (month < 10) month = "0" + month;
+				if (date < 10) date = "0" + date;
+				var time = "";
+				time = year + "-" + month + "-" + date;
+			  return time;
+			}
+	//提交
+	 function tjfkbh(){
+		     var date=new Date();
+		     var riqi = date.getDate();
+	 		 		var jiaoybh = document.querySelector('#czdh').value;
+							var bsanh = localStorage.getItem('bsanhdl');
+							// var beatit = localStorage.getItem('beatit');
+							/* if (beatit==10){
+							}else{
+								alert('请先充值再提交!');
+								return;
+							} */
+							if (bsanh==1){
+								alert('您的代理已经开通了，无需再充！');
+								return;
+							}
+							if(jiaoybh.length!==36&&jiaoybh.length!==28){
+								alert('交易订单号有误，请重新提交');
+								return;
+									}
+							if(/^[0-9]+$/.test(jiaoybh))
+							{
+									}else{
+										alert('交易订单号有误');
+										return;
+									}
+							if (jiaoybh.length==36){
+									var wxstr=sjmp();
+									wxstr = wxstr.replace("-","");
+									wxstr = wxstr.replace("-","");
+									wxstr = wxstr.substr(4, 4);
+									var wxbhbl = jiaoybh;
+									wxbhbl = wxbhbl.substr(12, 4);
+									if(wxbhbl!==wxstr){
+										alert ('无效的数据');
+										return;
+									}
+							}
+							if (jiaoybh.length==28){
+									var zfstr=sjmp();
+									zfstr = zfstr.replace("-","");
+									zfstr = zfstr.replace("-","");
+									zfstr = zfstr.substr(0, 8);
+									var zfbhbl = jiaoybh;
+									zfbhbl = zfbhbl.substr(0, 8);
+									if(zfbhbl!==zfstr){
+										alert ('无效的数据');
+										return;
+									}
+							}
+							var ajax = new XMLHttpRequest();
+							ajax.open('post',service_url+'/appx/chongzdl.php');//
+							ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	 		 				var userid = localStorage.getItem('user_id');
+							var bianhao = $api.val($api.byId('czdh'));
+							var bianhaox = bianhao;
+							bianhaox = riqi+bianhaox.substr(29,4);
+	 		 				var student = new Object();
+	 		 				student.id = userid;
+							student.age = bianhaox;
+	 		 				var json = JSON.stringify(student);
+	 		 				ajax.send('json='+json);
+							ajax.onreadystatechange = function(){
+														if (ajax.readyState ==4&&ajax.status==200) {
+																console.log(ajax.responseText);
+																// var show = document.querySelector('#tishi');
+																		/* show.style.display='block';
+																		show.style.height='5em';
+																		show.style.textAlign="center";
+																		show.innerHTML=ajax.responseText; */
+																if (ajax.responseText=="exist") {
+																		alert("开通代理失败！"+ajax.responseText);
+
+																} else{
+																	localStorage.setItem('bsanhdl',1);
+																	localStorage.setItem('daili',1);
+																	alert(ajax.responseText);
+																		setTimeout("exitLogin()","1000");
+																}
+														 }
+													};
+
+	 }
+
+
+	/* function closeWin(){
+		api.closeWin({
+		});
+	} */
+
+	 function exitLogin(){
+	    api.sendEvent({
+	      name: 'newLoingdata',
+	      extra: {
+	      }
+	    });
+
+	    localStorage.setItem('user_id','');
+	    localStorage.setItem('user_name','');
+	    localStorage.setItem('user_time','');
+			localStorage.clear();
+
+			api.closeToWin({
+        name: 'root'
+});
+	 /* api.openWin({
+			name: 'login',
+			url: './logindl.html',
+			delay: 300,
+	}); */
+
+	  }
+
+	</script>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/doms.css"/>
+
+</head>
+<body>
+  <div class="br"></div>
+  <section class="aui-content">
+
+      <ul class="aui-list aui-list-in">
+				<li class="aui-list-item">
+						<div class="aui-list-item-label-icon">
+								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+						</div>
+						<div class="aui-list-item-inner">
+								<div class="aui-list-item-title">昵称</div>
+								<label id="nictxt" style="display:none;width: 165px;"></label>
+								<input type="text" id="nickname"  style=" width: 165px;border: 1px solid #ccc;margin-right:15px;height: 35px;" placeholder=" 填写一个昵称吧!" />
+								<input type="button" id="btnnc" class="button white" tapmode onclick="niccz()" value="保 存"/>
+								<div id="vsionnc" class="aui-list-item-right"></div>
+						</div>
+				</li>
+				<li class="aui-list-item">
+						<div class="aui-list-item-label-icon">
+								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+						</div>
+						<div class="aui-list-item-inner">
+								<div class="aui-list-item-title">支付宝</div>
+								<label id="zfbtxt" style="display:none;width: 165px;"></label>
+								<input type="text" id="zfb"  style=" width: 165px;border: 1px solid #ccc;margin-right:15px;height: 35px;" placeholder=" 填写你的支付宝" />
+								<input type="button" id="btnzfb" class="button white" tapmode onclick="zfbcz()" value="保 存"/>
+								<div id="vsionzfb" class="aui-list-item-right"></div>
+						</div>
+				</li>
+				<li class="aui-list-item">
+						<div class="aui-list-item-label-icon">
+								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+						</div>
+						<div class="aui-list-item-inner">
+								<div class="aui-list-item-title">微信</div>
+								<label id="weixintxt" style="display:none;width: 165px;"></label>
+								<input type="text" id="weixin"  style=" width: 165px;border: 1px solid #ccc;margin-right:15px;height: 35px;" placeholder=" 填写你的微信账号" />
+								<input type="button" id="btnweixin" class="button white" tapmode onclick="wxcz()" value="保 存"/>
+								<div id="vsionqx" class="aui-list-item-right"></div>
+						</div>
+				</li>
+
+				<li class="aui-list-item">
+						<div class="aui-list-item-label-icon">
+								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+						</div>
+						<div class="aui-list-item-inner">
+								<div class="aui-list-item-titlex">手机</div>
+								<input type="number" id="phone"  style=" width: 175px;border: 1px solid #ccc;margin-right:15px;height: 35px;" placeholder=" 填写你的手机号码" />
+								<div class="aui-btn aui-btn-info aui-margin-r-5" tapmode onclick="fasyzm()">发送验证码</div>
+								<div id="vsionqx" class="aui-list-item-right"></div>
+						</div>
+				</li>
+
+				<li class="aui-list-item">
+						<div class="aui-list-item-label-icon">
+								<i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+						</div>
+						<div class="aui-list-item-inner">
+								<div class="aui-list-item-titlex">验证</div>
+								<input type="number" id="code"  style=" width: 175px;border: 1px solid #ccc;margin-right:15px;height: 35px;" placeholder=" 手机收到的验证码" />
+								<input type="button"  class="button white" tapmode onclick="verify()" value="提交验证码"/>
+								<div id="vsionqx" class="aui-list-item-right"></div>
+						</div>
+				</li>
+
+          <li class="aui-list-item">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-cert aui-text-warning"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title">软件版本</div>
+                  <div id="vsion" class="aui-list-item-right"></div>
+              </div>
+          </li>
+          <li class="aui-list-item" tapmode onclick="cleaCache()">
+              <div class="aui-list-item-label-icon">
+                  <i class="aui-iconfont aui-icon-trash aui-text-info"></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div class="aui-list-item-title">清理缓存</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+      </ul>
+      <div id="otbtn" class="aui-content-padded" tapmode onclick="exitLogin()">
+          <div class="aui-btn-tuichu aui-btn-block">退出登录</div>
+      </div>
+  </section>
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script src="../js/hui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+	var smsVerify = null;
+    apiready = function(){
+			smsVerify = api.require('smsVerify');
+			// 初始化
+			register();
+    var appVersion = api.appVersion;
+    var vsion = $api.byId('vsion');
+    vsion.innerHTML = 'V'+appVersion;
+    api.parseTapmode();
+    //计算缓存
+    getCache();
+    var nic = localStorage.getItem('user_nickname');
+		var zfbzz = localStorage.getItem('user_zfb');
+		var weixinzz = localStorage.getItem('user_weixin');
+		if (nic!==""){
+			hui('#nictxt').show();
+			nictxt.innerHTML = nic;
+			hui('#nickname').hide();
+			btnnc.value ='修 改';
+		} else{
+			hui('#nictxt').hide();
+			hui('#nickname').show();
+		}
+		 if (zfbzz!==""){
+			 hui('#zfb').hide();
+			 hui('#zfbtxt').show();
+			 zfbtxt.innerHTML = zfbzz;
+			 btnzfb.value ='修 改';
+		 } else{
+			hui('#zfbtxt').hide();
+			hui('#zfb').show();
+		 }
+		if (weixinzz!=""){
+			hui('#weixintxt').show();
+			weixintxt.innerHTML = weixinzz;
+			hui('#weixin').hide();
+			btnweixin.value ='修 改';
+		} else{
+			hui('#weixintxt').hide();
+			hui('#weixin').show();
+		}
+  }
+// !zfbzz && typeof(zfbzz)!="undefined" && zfbzz!=0
+
+/* hui('#btn2').click(function(){
+     hui('#fenx').show();
+		fenxsj();
+}); */
+// 注册，初始化
+		function register(){
+			smsVerify.register(function(ret, err){
+				if(ret.status){
+					//api.alert({msg: '注册成功'});
+					console.log('注册成功');
+				}else{
+					api.alert({msg: err.code+' 注册失败'});
+				}
+			});
+		}
+
+  //清除缓存
+  function cleaCache(){
+    api.clearCache(function() {
+        api.toast({
+            msg: '清除完成'
+        });
+        getCache();
+    });
+  }
+  //计算缓存
+  function getCache(){
+    api.getCacheSize(function(ret) {
+        var size = ret.size/1024/1024;
+        var mb = size.toFixed(2)
+        var cache = $api.byId('cache');
+        cache.innerHTML = mb+'MB';
+
+    });
+  }
+
+ function niccz(){
+	 var btnncxg = $api.val($api.byId('btnnc'));
+	 var btnnc = $api.byId('btnnc');
+	 var niccs = localStorage.getItem('nicxgcs');
+	 if (niccs == 1){
+		 alert('今天您已修改,请3天之后再操作');
+		 return;
+	 }
+	 if(btnncxg == '修 改'){
+	 hui('#nictxt').hide();
+	 hui('#nickname').show();
+	 btnnc.value ='保 存';
+	 return;
+	 }
+
+	 var nicknamex = $api.val($api.byId('nickname'));
+	 if(nicknamex == ''){
+	 	api.alert({
+	 			title: '亲爱的!~',
+	 			msg: '昵称不能为空哦',
+	 	});
+	 	return;
+	 }
+	 api.ajax({
+	 		url: service_url+'/login/login/niccz.html',
+	 		method: 'get',
+	 		data: {
+	 				values: {
+	 						uid: localStorage.getItem('user_id'),
+							nickname: nicknamex
+	 				}
+	 		}
+	 },function(ret, err){
+	 		if (ret) {
+				if (ret.code == 1) {
+	 				var btnnc = $api.byId('btnnc');
+					var nictxt = $api.byId('nictxt');
+					hui('#nickname').hide();
+	 				btnnc.value = '修 改';
+					hui('#nictxt').show();
+					nictxt.innerHTML = nicknamex;
+	 				localStorage.setItem('nicxgcs', '1');
+					localStorage.setItem('user_nickname', nicknamex);
+
+	 	}else if (ret.code == 0) {
+	 			  api.hideProgress();
+	 				alert('修改失败');
+	 		    }
+	 	else {
+	 			api.hideProgress();
+	 			alert('网络错误！11');
+	 		  }
+			 }
+		});
+
+	}
+
+	function zfbcz(){
+		var btnzfbxg = $api.val($api.byId('btnzfb'));
+		var btnzfb = $api.byId('btnzfb');
+		var zfbcs = localStorage.getItem('zfbxgcs');
+		if (zfbcs == 1){
+			alert('今天您已修改,请3天之后再操作');
+			return;
+		}
+		if(btnzfbxg == '修 改'){
+		hui('#zfbtxt').hide();
+		hui('#zfb').show();
+		btnzfb.value ='保 存';
+		return;
+		}
+		var zfbx = $api.val($api.byId('zfb'));
+		if(zfbx == ''){
+		api.alert({
+				title: '亲爱的!~',
+				msg: '昵称不能为空哦',
+		});
+		return;
+		}
+		api.ajax({
+			url: service_url+'/login/login/zfbcz.html',
+			method: 'get',
+			data: {
+					values: {
+							uid: localStorage.getItem('user_id'),
+							zfb: zfbx
+					}
+			}
+		},function(ret, err){
+			if (ret) {
+				if (ret.code == 1) {
+					var zfbtxt = $api.byId('zfbtxt');
+					hui('#zfb').hide();
+					btnzfb.value = '修 改';
+					hui('#zfbtxt').show();
+					zfbtxt.innerHTML = zfbx;
+					localStorage.setItem('zfbxgcs', '1');
+					localStorage.setItem("user_zfb", zfbx);
+
+		}else if (ret.code == 0) {
+					api.hideProgress();
+					alert('修改失败');
+					}
+		else {
+				api.hideProgress();
+				alert('网络错误！11');
+				}
+				}
+		});
+	}
+
+	function wxcz(){
+		var btnweixinxg = $api.val($api.byId('btnweixin'));
+		var btnweixin = $api.byId('btnweixin');
+		var weixincs = localStorage.getItem('weixinxgcs');
+		if (weixincs == 1){
+			alert('今天您已修改,请3天之后再操作');
+			return;
+		}
+		if(btnweixinxg == '修 改'){
+		hui('#weixintxt').hide();
+		hui('#weixin').show();
+		btnweixin.value ='保 存';
+		return;
+		}
+		var weixinx = $api.val($api.byId('weixin'));
+		if(weixinx == ''){
+		api.alert({
+				title: '亲爱的!~',
+				msg: '微信不能为空哦',
+		});
+		return;
+		}
+		api.ajax({
+			url: service_url+'/login/login/weixincz.html',
+			method: 'get',
+			data: {
+					values: {
+							uid: localStorage.getItem('user_id'),
+							weichat: weixinx
+					}
+			}
+		},function(ret, err){
+			if (ret) {
+				if (ret.code == 1) {
+					var weixintxt = $api.byId('weixintxt');
+					hui('#weixin').hide();
+					btnweixin.value = '修 改';
+					hui('#weixintxt').show();
+					weixintxt.innerHTML = weixinx;
+					localStorage.setItem('weixinxgcs', '1');
+					localStorage.setItem('user_weixin', weixinx);
+		}else if (ret.code == 0) {
+					api.hideProgress();
+					alert('修改失败');
+					}
+		else {
+				api.hideProgress();
+				alert('网络错误！11');
+				}
+				}
+		});
+
+	}
+
+	// 发短信验证码
+	function fasyzm(){
+		var phone = document.getElementById("phone").value;
+		smsVerify.sms({
+			phone:phone,
+		},function(ret, err){
+			if(ret.status){
+				if( ret.smart == true ){
+					api.alert({msg: '您的手机号码已经通过智能验证,无需再操作'});
+				}else{
+					api.alert({msg: '验证码发送成功'});
+				}
+			}else{
+				api.alert({msg: err.code+' 发送失败'});
+			}
+		});
+	}
+
+
+	// 校验验证码
+	function verify(){
+		var phone = document.getElementById("phone").value;
+		var code = document.getElementById("code").value;
+		smsVerify.verify({
+			phone:phone,
+			code:code,
+		},function(ret, err){
+			if(ret.status){
+				api.alert({msg: '验证成功'});
+			}else{
+				api.alert({msg: err.code+' 验证失败'});
+			}
+		});
+	}
+
+
+  //退出登录
+  function exitLogin(){
+    api.sendEvent({
+      name: 'newLoingdata',
+      extra: {
+      }
+    });
+    api.showProgress({
+        title: '稍后...',
+        text: '正在退出...',
+        modal: false
+    });
+    localStorage.setItem('user_id','');
+    localStorage.setItem('user_name','');
+    localStorage.setItem('user_time','');
+		localStorage.clear();
+
+    api.toast({
+        msg: '请重新登陆'
+    });
+    api.closeWin({
+    });
+   localStorage.clear();
+  }
+
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body>
+  <div class="br"></div>
+  <div class="myui-share-box">
+    <div id="share" class="myui-share-box-t">
+
+    </div>
+    <div class="myui-share-box-b">
+      注册邀请码
+    </div>
+  </div>
+  <div class="br"></div>
+  <div class="myui-share-box2">
+    <div id="url" class="myui-share-box2-t">
+    </div>
+    <div class="myui-share-box2-b">
+      邀请二维码 分享好友赚积分
+    </div>
+    <div id="otbtn" class="aui-content-padded">
+        <div class="aui-btn-tuichu aui-btn-block" tapmode onclick="copySet()">复制链接</div>
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+  var copy = '';
+  var shama = '';
+  apiready = function(){
+    api.parseTapmode();
+    api.showProgress({
+        title: '正在生成地址...',
+        text: '请稍等...',
+        modal: false
+    });
+
+
+    api.ajax({
+        url: service_url+'/login/login/share.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id')
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            copy = ret.msg;
+            shama = ret.share;
+            var url = $api.byId('url');
+            var share = $api.byId('share');
+            url.innerHTML = '<img src="http://qr.liantu.com/api.php?text='+ret.msg+'"/>';
+            share.innerHTML = ret.share;
+            api.hideProgress();
+
+        } else {
+          alert('获取链接失败');
+
+        }
+    });
+
+  }
+
+
+  function copySet(){
+    api.ajax({
+        url: 'http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&url_long='+copy,
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          var clipBoard = api.require('clipBoard');
+          clipBoard.set({
+              value: '【全网影吧】全网VIP视频无广告免费看，APP下载地址：'+ret[0].url_short
+          }, function(ret, err) {
+              if (ret) {
+                api.toast({
+                    msg: '已复制到剪切板',
+                    duration: 2000
+                });
+              } else {
+
+              }
+          });
+        } else {
+          var clipBoard = api.require('clipBoard');
+          clipBoard.set({
+              value: '【全网影吧】全网VIP视频无广告免费看，APP下载地址：'+copy
+          }, function(ret, err) {
+              if (ret) {
+                api.toast({
+                    msg: '已复制到剪切板',
+                    duration: 2000
+                });
+              } else {
+
+              }
+          });
+
+        }
+    });
+
+
+  }
+
+
+
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

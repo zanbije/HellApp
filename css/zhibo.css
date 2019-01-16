@@ -1,0 +1,23 @@
+@charset "utf-8";
+body{font-family:SimHei,'Helvetica Neue',Arial,'Droid Sans',sans-serif;font-size:14px;}
+/*index部分*/
+.weui-tabbar{position: fixed !important;}
+
+.weui-panel{margin: 0 !important;padding-bottom: 60px;}
+.weui-media-box__title span{float: right;font-size: 14px;color:#FFF;}
+/*mine部分*/
+.logo{width: 100%;height: 150px;overflow: hidden;background: #33bb59;position: relative;}
+.logoImg {width: 150px;height:100% ;border-radius: 300px;}
+.logoImg img{width: 100%;height: 100%;border-radius: 30px;}
+.logo{width: 100%;height: 160px;overflow: hidden;background:#a8f6a7;position: relative;background-image:url(css/user_bg.jpg)}
+.zhiboImg {width:50px;height:50px;text-align:center;}
+.zbText{font-size:16px;margin-left: 10px;text-align:center;margin-top: 50px;color: #fff;}
+.zbText h3 span{padding-left: 30px;font-size: 16px;color: #a8f6a7;}
+.text {text-align:center;padding-top:10px}
+
+/*宫格*/
+.weui-grids:after{width:1px;text-align:centerbottom:0;border-left:1px solid #d9d9d9;-webkit-transform-origin:0 0;transform-origin:0 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
+.weui-grid{position:relative;float:left;padding:20px 10px;width:33.33333333%;box-sizing:border-box}
+.weui-grid:before{top:0;width:1px;border-right:1px solid #d9d9d9;-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-transform:scaleX(.5);transform:scaleX(.5)}
+.weui-grid:after,
+.weui-grid:before{content:" ";position:absolute;right:0;bottom:0;color:#d9d9d9}.weui-grid:after{left:0;height:1px;border-bottom:1px solid #d9d9d9;-webkit-transform-origin:0 100%;transform-origin:0 100%;-webkit-transform:scaleY(.5);transform:scaleY(.5)}

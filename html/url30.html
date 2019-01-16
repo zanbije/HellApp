@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<!-- <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/> -->
+</head>
+<body bgcolor="ffffff">
+    <header class="aui-bar aui-bar-nav" id="aui-header">
+        <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div id="title" class="aui-title">付款中心</div>
+    </header>
+		<div class="zhif">
+				<div class="zhifx" >请选择付款方式</div>
+		</div>
+
+
+
+		<div class="open-vip-b">
+			<div class="open-vip-b-box">
+				<div id="imgurl" class="open-vip-b-kax">
+
+				</div>
+
+				<div class="open-vip-b-text" style="" id="czfkbt">
+				<center> <font size="8">	￥15元</font></center>
+				 <form>
+				        <!-- <p><input id="inputprice" type="text" name="inputprice" class="form-control" placeholder="请输入金额" required="required"></p>
+				                -->
+				       <div class="aui-content-padded">
+								<center> <table>
+									 <tr>
+										 <td>
+											<center> <img src="../image/zfbtp.png" width="40" height="40"></center>
+										 </td>
+										 <td>
+										 <center> <img src="../image/wxtp.png" width="40" height="40" ></center>
+										 </td>
+									 </tr>
+									 <tr>
+										 <td>
+										 	<label><input class="aui-radio" type="radio" name="demo1" id="demo1-alipay" value="option1" checked=""> 支付宝支付</label>
+
+										 </td>
+										 <td>
+										 <label><input class="aui-radio" type="radio" name="demo1" id="demo1-weixin" value="option2"> 微信支付</label>
+
+										 </td>
+									 </tr>
+								 </table></center>
+
+				       </div>
+                <!-- <input type="button" id="kaitong" class="aui-btn aui-btn-primary" value="查看教程" onclick="ckjc()"/> -->
+				        <button type="button" id="demoBtn1" class="aui-btn aui-btn-primary" onclick="qdsz()">确定支付</button>
+				    </form>
+				</div>
+
+				<label id="tishi"></label>
+			</div>
+		</div>
+
+
+		<form style='display:none;' id='formpay' name='formpay' method='post' action='http://pay.ebkf.net'>
+			<input name='goodsname' id='goodsname' type='text' value='' />
+			<input name='istype' id='istype' type='text' value='' />
+			<input name='key' id='key' type='text' value=''/>
+			<input name='notify_url' id='notify_url' type='text' value=''/>
+			<input name='orderid' id='orderid' type='text' value=''/>
+			<input name='orderuid' id='orderuid' type='text' value=''/>
+			<input name='price' id='price' type='text' value=''/>
+			<input name='return_url' id='return_url' type='text' value=''/>
+			<input name='uid' id='uid' type='text' value=''/>
+			<input type='submit' id='submitdemo1'>
+		</form>
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script src="../js/hui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function () {
+		api.parseTapmode();
+		var qidbl =localStorage.getItem("qidong");
+		if (qidbl==1){
+		setTimeout(tjcz, 500);
+		hui('#czfkbt').hide();
+		}
+	}
+	var storage = window.localStorage;
+	if (!storage.getItem("pageLoadCount"))
+	storage.setItem("pageLoadCount",10);
+	storage.pageLoadCount = parseInt(storage.getItem("pageLoadCount")) + 1;
+	var djcs = storage.pageLoadCount;
+	localStorage.setItem('djcsx',djcs);
+
+	Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1, //月份
+        "d+": this.getDate(), //日
+        "H+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    return fmt;
+}
+var time1 = new Date().Format("yyyyMMdd");
+
+	var yonghm=localStorage.getItem('user_name');
+
+	localStorage.setItem('vipkaa','30');
+
+	var shujia = localStorage.getItem('vipkaa');
+	var yhid=localStorage.getItem('user_id');
+	var djcsy=localStorage.getItem('djcsx');
+	var orderidx=yhid+shujia+time1+djcsy;
+$().ready(function(){
+    function getistype(){
+        return ($("#demo1-alipay").is(':checked') ? "1" : "2" );
+    }
+    $("#demoBtn1").click(function(){
+        $.post(
+            service_url+'/appx/pay.php',
+            {
+                price : 15,
+                istype : getistype(),
+				       username:yonghm,
+							 orderid:orderidx
+            },
+             function(data){
+                 if (data.code > 0){
+                     $("#goodsname").val(data.data.goodsname);
+                     $("#istype").val(data.data.istype);
+                     $('#key').val(data.data.key);
+                     $('#notify_url').val(data.data.notify_url);
+                     $('#orderid').val(data.data.orderid);
+                     $('#orderuid').val(data.data.orderuid);
+                     $('#price').val(data.data.price);
+                     $('#return_url').val(data.data.return_url);
+                     $('#uid').val(data.data.uid);
+                     $('#submitdemo1').click();
+                 } else {
+                     alert(data.msg);
+                 }
+             }, "json"
+         );
+     });
+ });
+
+function qdsz(){
+	 localStorage.setItem("qidong",'1');
+ }
+
+ function tjcz(){
+						var ajax = new XMLHttpRequest();
+						ajax.open('post',service_url+'/appx/chongz.php');
+						ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+						localStorage.setItem('vipka','30');
+						var shuji = localStorage.getItem('vipka');
+						var user_id = localStorage.getItem('user_id');
+ 		 				var userid = user_id;
+						var djcis =Number(djcsy)-1;
+ 		 				var student = new Object();
+ 		 				student.id = userid;
+						student.age = shuji;
+						student.kj = djcis;
+ 		 				var json = JSON.stringify(student);
+ 		 				ajax.send('json='+json);
+						ajax.onreadystatechange = function(){
+													if (ajax.readyState ==4&&ajax.status==200) {
+															console.log(ajax.responseText);
+															var show = document.querySelector('#tishi');
+																	show.style.display='block';
+																	show.style.height='5em';
+																	show.style.textAlign="center";
+																	show.innerHTML=ajax.responseText;
+															if (ajax.responseText=="nono") {
+
+																	show.innerHTML='<font size=5 color=red>'+'未成功付款!'+'<br/>'+'获取点卡失败'+'</font>';
+																	localStorage.setItem("qidong",'0');
+                                  alert("未成功付款,获取点卡失败!");
+															} else{
+																	show.innerHTML= '<font size=6 color=green>'+'支付成功!'+'</font>'+'<br/>'+'<font size=4>'+'您的刚刚获取的卡密是:' +'<font color=red>'+ajax.responseText+'</font>' +'<br/>'+'已为您复制到剪贴板，请返回提交'+'</font>';
+																	localStorage.setItem("qidong",'0');
+
+																	var clipBoard = api.require('clipBoard');
+																	clipBoard.set({
+																		value: ajax.responseText
+																	}, function(ret, err) {
+																				if (ret) {
+																   api.toast({
+																		msg: '已复制号码到剪切板',
+																		duration: 1000
+																       });
+																					} else {
+
+																			  }
+																	});
+                                 alert("恭喜您,支付成功!已获得卡密,注意查收!");
+															}
+													}
+												};
+
+
+
+ }
+ /* function closeWin(){
+      api.closeWin({
+      });
+  } */
+</script>
+</html>

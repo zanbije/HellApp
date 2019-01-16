@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html style="font-size: 50px;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/myui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/hui.css" />
+<style type="text/css">
+		#fenx{
+			font-weight: bold;
+			width:95%;
+			margin:0px auto;
+			 background:#ffffff;
+			 text-align:center;
+			 font-size:16px;
+			 display: none;
+		}
+#div1{
+    float: left;
+		display: inline-block;
+		width: 22%;
+		text-align: center;
+		margin: 5px;
+}
+#div2 {
+    float: left;
+		display: inline-block;
+     width: 22%;
+		 text-align: center;
+		 margin: 5px;
+}
+#div3 {
+    float: right;
+		display: inline-block;
+    width: 22%;
+		text-align: center;
+		margin: 5px;
+}
+#div4 {
+    float: right;
+		display: inline-block;
+    width: 22%;
+		text-align: center;
+		margin: 5px;
+}
+	</style>
+
+
+</head>
+<body style="background-color:#fffae4">
+  <div class="">
+    <img src="../image/share_bg.png" alt="" width="100%">
+
+  </div>
+	<div style="text-align: center;width: 100%;">  提示：若获取链接失败，请重启app！</div>
+  <div class="sp-content">
+
+    <div class="bigImg">
+      <div class="getVip">
+        <button onclick="erweima()">获取二维码</button>
+        <button onclick="copySet()" id="btn2">邀请好友</button>
+      </div>
+    </div>
+
+<div id="fenx" >
+	<div id="div1">
+	<img src="../image/wxfx.png"  id="wxfx" onclick="sharefx()">
+	微信分享
+	</div>
+	<div id="div2">
+	<img src="../image/qq.png"  id="qqx" onclick="sharefx()">
+	QQ分享
+	</div>
+	<div id="div4">
+		<img src="../image/lianj.png"  id="lianj" onclick="fenxlianj()">
+		复制链接
+		</div>
+	<div id="div3">
+	<img src="../image/weibo.png"  id="wbo" onclick="sharefx()">
+	微博分享
+	</div>
+</div>
+
+    <div class="rule">
+    		<h3>
+    		<p>
+    			邀请规则
+    		</p>
+    		</h3>
+    		<ul>
+    			<li>在本页面复制邀请链接或二维码发送给微信或QQ好友.</li>
+    			<li>好友使用链接后您将获得相应金币奖励(在我的-金币兑换).</li>
+    			<li>获得金币后您可以兑换全网影吧全网VIP天数和现金提现！</li>
+    		</ul>
+    	</div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script src="../js/hui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+  var copy = '';
+  var shama = '';
+	var fenx1 = '';
+	var fenx3 = '';
+
+  apiready = function(){
+    api.parseTapmode();
+    api.showProgress({
+        title: '加载中...',
+        text: '请稍等...',
+        modal: false
+    });
+
+
+    api.ajax({
+        url: service_url+'/login/login/share.html',
+        method: 'get',
+        data: {
+            values: {
+                uid: localStorage.getItem('user_id')
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            copy = ret.msg;
+            shama = ret.share;
+            // var url = $api.byId('url');
+            // var share = $api.byId('share');
+            // url.innerHTML = '<img src="http://qr.liantu.com/api.php?text='+ret.msg+'"/>';
+            // share.innerHTML = ret.share;
+            api.hideProgress();
+
+        } else {
+          alert('获取链接失败');
+
+        }
+    });
+
+  }
+
+  function erweima(){
+    var dialogBox = api.require('dialogBox');
+    dialogBox.webView({
+        tapClose: false,
+        path: 'http://qr.liantu.com/api.php?text='+copy,
+        texts: {
+            title: '专属二维码',
+            leftBtnTitle: '取消',
+            rightBtnTitle: '保存'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 5,
+            w: 300,
+            h: 380,
+            title: {
+                h: 44,
+                size: 14,
+                color: '#000'
+            },
+            upDividingLine: {
+                width: 0.2,
+                color: '#696969'
+            },
+            webView: {
+                h: 300,
+                bg: '#fff',
+            },
+            downDividingLine: {
+                width: 0.2,
+                color: '#696969'
+            },
+            left: {
+                bg: 'rgba(0,0,0,0)',
+                color: '#007FFF',
+                size: 12
+            },
+            right: {
+                bg: 'rgba(0,0,0,0)',
+                color: '#007FFF',
+                size: 12
+            }
+        }
+    }, function(ret) {
+        if (ret.eventType == 'left') {
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'webView'
+            });
+        }else {
+          alert('请截屏后分享');
+        }
+    });
+  }
+
+/* function openwx(){
+     locatUrl = "weixin://";
+     if(/ipad|iphone|mac/i.test(navigator.userAgent)) {
+        var ifr =document.createElement("iframe");
+        ifr.src = locatUrl;
+        ifr.style.display = "none";
+        document.body.appendChild(ifr);
+     }else{
+        window.location.href = locatUrl;
+     }
+} */
+
+
+
+  function copySet(){
+    api.ajax({
+        url: 'http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&url_long='+copy,
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          var clipBoard = api.require('clipBoard');
+          clipBoard.set({
+              value: '【天天影视】全网高清大片免费看，你想看的都有，注册即送VIP：'+ret[0].url_short,
+          }, function(ret, err) {
+              if (ret) {
+                /* api.toast({
+                    msg: '已复制到剪切板',
+                    duration: 2000
+                }); */
+								api.hideProgress();
+              } else {
+              }
+          });
+        } else {
+          var clipBoard = api.require('clipBoard');
+          clipBoard.set({
+              value: '【天天影视】全网高清大片免费看，你想看的都有，注册即送VIP：'+copy
+          }, function(ret, err) {
+              if (ret) {
+                /* api.toast({
+                    msg: '已复制到剪切板',
+                    duration: 2000
+                }); */
+								api.hideProgress();
+              } else {
+
+              }
+          });
+
+        }
+    });
+  }
+
+	function fenxsj(){
+		var clipBoard = api.require('clipBoard');
+		clipBoard.get(function(ret, err) {
+		    if (ret) {
+		        fenx1 = ret.value;
+		    } else {
+		        alert(JSON.stringify(err));
+		    }
+		});
+	}
+
+	function fenxlianj(){
+		var clipBoard = api.require('clipBoard');
+		clipBoard.get(function(ret, err) {
+				if (ret) {
+						fenx1 = ret.value;
+						alert('已复制!可直接粘贴发送');
+				} else {
+						alert(JSON.stringify(err));
+				}
+		});
+	}
+	function sharefx(){
+		var sharedModule = api.require('shareAction');
+    sharedModule.share({
+    text: fenx1,
+    type: 'text'
+});
+	}
+
+hui('#btn2').click(function(){
+     hui('#fenx').show();
+		fenxsj();
+});
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

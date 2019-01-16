@@ -1,0 +1,1577 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/demo.css">
+    <style type="text/css">
+        .text-white {
+            color: #ffffff !important;
+        }
+        .aui-grid [class*=aui-col-] {
+            padding: 0.75rem 0;
+        }
+        .iconfont{
+          font-size: 1.5rem
+        }
+				.yangs{
+					font-size:1rem;
+					color: #F5611A;
+				}
+.icon {
+   width: 1.4em; height: 1.4em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+	 margin-top: -0.1rem;
+}
+
+.black_overlay{
+         display: none;
+         position: absolute;
+         top: 0%;
+         left: 0%;
+         width: 100%;
+         height: 100%;
+         /* background-color: #000; */
+         z-index:1001;
+         -moz-opacity: 0.8;
+         opacity:.80;
+         filter: alpha(opacity=80);
+    }
+    .white_content {
+       display: none;
+       position: absolute;
+       top: 10%;
+       left: 15%;
+       z-index:1002;
+       overflow: auto;
+       margin:0 auto;
+       line-height: 370px;
+       width: 300px;
+       height: 285px;
+       color:#FF4500;
+       background-image: url(../image/qdjinbi.png);
+       background-repeat: no-repeat;
+       background-size: 100% 100%;
+       -moz-background-size: 100% 100%;
+       text-align:center;
+			font-size: 22px;
+    }
+    </style>
+</head>
+
+<body onload="getData()">
+    <!-- 顶部 -->
+     <section  id="user-info" class="myui-bg-info">
+		<div class="user-boxx2" tapmode onclick="tojinbi()">
+			<span id="jinb" class="yangs" tapmode onclick="tojinbi()"></span><br/>
+			<font size="3" color="#00A7F5">我的金币</font>
+		</div>
+
+		<div class="user-boxx3" tapmode onclick="totudi()">
+			<span id="tud" class="yangs" tapmode onclick="totudi()"></span><br/>
+			<font size="3" color="#00A7F5">我的徒弟</font>
+		</div>
+
+			<div  class="user-box" id="user-box">
+				<span id="min"></span>
+				<div class="user-box-1" tapmode onclick="toLogin()">
+					<img src="../image/user_img.png">
+				</div>
+
+				<div id="islogin"  style="font-size:1rem;color:#8e726f;" onclick="toLogin()">
+				</div>
+
+				<div id="time"  style="font-size:0.7rem;color:#ff5722;" onclick="toLogin()">
+				</div>
+			</div>
+    </section>
+
+   <div id="light_qq" class="white_content">
+
+   </div>
+   <div id="light_weixin" class="white_content">
+
+   </div>
+   <div id="fade" class="black_overlay"  onClick="closeWindow()">
+   </div>
+
+        </div>
+    </section>
+
+    <div class="br"></div>
+    <section class="aui-content" style="background-color: #fff;">
+      <div class="br"></div>
+      <div>
+      <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('open_vip_win')"><img src=../image/app/cz.png style='width: 30px;height: 30px;margin-top: 10px;' /><p style='color:#3f3f3f;margin-top: 10px;'>会员充值</p></li>
+      <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('share_win')"><img src=../image/app/jfqz.png style='width: 30px;height: 30px;margin-top: 10px;' /><p style='color:#3f3f3f;margin-top: 10px;'>分享赚积分</p></li>
+      <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="look_record()" ><img src=../image/app/gkju.png style='width: 30px;height: 30px;margin-top: 10px;' /><p style='color:#3f3f3f;margin-top: 10px;'>观看记录</p></li>
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="DailiLogin()"><img src=../image/app/dltk.png style='width: 30px;height: 30px;margin-top: 10px;' /><p style='color:#3f3f3f;margin-top: 10px;'>代理提卡</p></li>
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('djjj_win')"><img src=../image/app/dljj.png style='width: 30px;height: 30px;margin-top: 10px;' /></a><p style='color:#3f3f3f;margin-top: 10px;'>代理介绍</a></p>
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('cwdj_win')"><img src=../image/app/dl.png style='width: 30px;height: 30px;margin-top: 10px;' /></a><p style='color:#3f3f3f;margin-top: 10px;'>成为代理</a></p>
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('dailishow_win')"><img src=../image/app/wdfr.png style='width: 30px;height: 30px;margin-top: 10px;' /></a><p style='color:#3f3f3f;margin-top: 10px;'>代理分润</a></p>
+
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' input id="qiandaon" type="image" tapmode onclick="qiandao()"><img src=../image/app/qiandao.png style='width: 30px;height: px;margin-top: 10px;' /><p style='color:#3f3f3f;margin-top: 10px;'>每日签到</a>
+	  </p>
+
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px'  onclick="openWin('caiwulog_win')"><img src=../image/app/caiwu.png style='width: 30px;height: 30px;margin-top: 10px;' /></a><p style='color:#3f3f3f;margin-top: 10px;'>收支明细</a></p>
+
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('qianbao_win')"><img src=../image/app/qianbao.jpg style='width: 30px;height: 30px;margin-top: 10px;' /></a><p style='color:#3f3f3f;margin-top: 10px;'>我的钱包</a></p>
+
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px' onClick="openWin('jifen_win')"><img src=../image/app/chongzhi.png style='width: 30px;height: 30px;margin-top: 10px;' /></a><p style='color:#3f3f3f;margin-top: 10px;'>金币兑换</a></p>
+
+	  <li style='width:25%;float: left;text-align: -webkit-center;border-right: 3px'  onclick="openWin('wsfr_win')"><img src=../image/app/jf.png style='width: 30px;height: px;margin-top: 10px;' /><p style='color:#3f3f3f;margin-top: 10px;'>任务中心
+
+	  </p></li>
+
+
+
+    <br /><br /><br />
+    </div>
+    <div class="br"></div>
+  </section>
+<div class="br"></div>
+    <section class="aui-content">
+        <ul class="aui-list aui-list-in" style="line-height:30px;">
+
+          <li class="aui-list-item" onClick="openWin('jifen_win')" >
+              <div class="aui-list-item-label-icon">
+                  <i><img src="../image/app/duihuan.png" width="25" height="20"/></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow" >
+                  <div style="font-size:0.75rem;color:#323232;">积分兑换</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+
+          <li class="aui-list-item" onClick="openWin('back_pwd')">
+              <div class="aui-list-item-label-icon">
+                  <i><img src="../image/app/mima.png" width="25" height="20"/></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div style="font-size:0.75rem;color:#323232;">修改密码</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+
+      <li class="aui-list-item" tapmode onClick="checkUpdate()">
+          <div class="aui-list-item-label-icon">
+              <i><img src="../image/app/shengji.png" width="25" height="20"/></i>
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+              <div style="font-size:0.75rem;color:#323232;">检测更新</div>
+              <div id="cache" class="aui-list-item-right"></div>
+          </div>
+      </li>
+
+
+        </ul>
+
+      </div>
+    </section>
+
+
+<div class="br"></div>
+<section class="aui-content style="line-height:18px;"">
+</div>
+
+    <center><ul class="aui-list aui-list-in" style="line-height:30px;">
+
+
+      <li class="aui-list-item" tapmode onClick="cleaCache()">
+          <div class="aui-list-item-label-icon">
+              <i><img src="../image/app/qingli.png" width="25" height="20"/></i>
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+              <div style="font-size:0.75rem;color:#323232;">清理缓存</div>
+              <div id="cache" class="aui-list-item-right"></div>
+          </div>
+      </li>
+
+      <li class="aui-list-item" onClick="openWin('question_win')">
+          <div class="aui-list-item-label-icon">
+              <i><img src="../image/app/cjwt.png" width="25" height="20"/></i>
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+              <div style="font-size:0.75rem;color:#323232;">常见问题</div>
+              <div id="cache" class="aui-list-item-right"></div>
+          </div>
+      </li>
+
+
+	  	        <li class="aui-list-item" onClick="adhz()">
+          <div class="aui-list-item-label-icon">
+              <i><img src="../image/app/dailisy.png" width="25" height="20"/></i>
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+              <div style="font-size:0.75rem;color:#323232;">广告合作</div>
+              <div id="cache" class="aui-list-item-right"></div>
+          </div>
+      </li>
+
+	  	  	        <li class="aui-list-item" onClick="mkmoney()">
+          <div class="aui-list-item-label-icon">
+              <i><img src="../image/app/zhuan.jpg" width="25" height="20"/></i>
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+              <div style="font-size:0.75rem;color:#323232;">如何赚钱</div>
+              <div id="cache" class="aui-list-item-right"></div>
+          </div>
+      </li>
+
+	  	  	  	        <li class="aui-list-item" onClick="kefu1()">
+          <div class="aui-list-item-label-icon">
+              <i><img src="../image/app/cwdl.png" width="25" height="20"/></i>
+          </div>
+          <div class="aui-list-item-inner aui-list-item-arrow">
+              <div style="font-size:0.75rem;color:#323232;">联系客服微信：3346087609</div>
+              <div id="cache" class="aui-list-item-right"></div>
+          </div>
+      </li>
+
+
+
+          <li class="aui-list-item" tapmode onClick="openWin('shezhi_win')">
+              <div class="aui-list-item-label-icon">
+                  <i><img src="../image/app/shezhi.png" width="25" height="20"/></i>
+              </div>
+              <div class="aui-list-item-inner aui-list-item-arrow">
+                  <div style="font-size:0.75rem;color:#323232;">设置</div>
+                  <div id="cache" class="aui-list-item-right"></div>
+              </div>
+          </li>
+
+    </ul>
+
+</section>
+
+<div class="br">
+
+</div>
+<!--<div id="vsion" class="user-bt" onClick="alert('免责声明:本站所有视频均来自互联网，版权归原创者所有，如果侵犯了您的权益，请通知我们，我们将会在3个正常工作日内删除其侵权内容，谢谢合作。')">
+
+</div>-->
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../fonts/iconfont.js"></script>
+<script type="text/javascript" src="../js/hui.js"></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script>
+<script type="text/javascript">
+apiready = function () {
+  api.parseTapmode();
+  var appVersion = api.appVersion;
+  var vsion = $api.byId('vsion');
+  vsion.innerHTML = ' '+appVersion+' <span style="color:#7bbfea">免责声明</span>';
+      //监听重新获取客服联系方式广播
+      api.addEventListener({
+          name: 'newLoingdata'
+      }, function(ret, err) {
+        if (ret) {
+          getData();
+          location.reload();
+        }
+      });
+
+      getData();
+
+    }
+
+
+    //联系客服按钮
+
+		/////////////联系客服 方法  kefu  S  客服根据代理设置自动调用  ////////////
+		function kefu() {
+			if(localStorage.getItem('user_id') < 1) {
+				api.alert({
+					title: '请先登录',
+					msg: '知道了',
+				});
+			} else {
+				var dialogBox = api.require('dialogBox');
+				dialogBox.alert({
+					texts: {
+						content: localStorage.getItem('url'),
+						leftBtnTitle: '知道了',
+						rightBtnTitle: '关闭'
+					},
+					styles: {
+						bg: '#fff',
+						w: 300,
+						content: {
+							color: '#000',
+							size: 14
+						},
+						left: {
+							marginB: 7,
+							marginL: 20,
+							w: 130,
+							h: 35,
+							corner: 2,
+							bg: '#ff7600',
+							color: '#fff',
+							size: 14
+						},
+						right: {
+							marginB: 7,
+							marginL: 10,
+							w: 130,
+							h: 35,
+							corner: 2,
+							bg: '#ff7600',
+							color: '#fff',
+							size: 14
+						}
+					}
+				}, function(ret) {
+					if(ret.eventType == 'left') {
+						var dialogBox = api.require('dialogBox');
+						dialogBox.close({
+							dialogName: 'alert'
+						});
+					} else if(ret.eventType == 'right') {
+						var clipBoard = api.require('clipBoard');
+						clipBoard.set({
+							value: localStorage.getItem('user_weichat')
+						}, function(ret, err) {
+							if(ret) {
+								api.toast({
+									msg: '已复制号码到剪切板',
+									duration: 2000
+								});
+								var dialogBox = api.require('dialogBox');
+								dialogBox.close({
+									dialogName: 'alert'
+								});
+							} else {
+
+							}
+						});
+					}
+				});
+			}
+		}
+
+		/////////////联系管理 方法  kefu  E   ////////////
+
+
+
+    function openWin(name){
+      if (localStorage.getItem('user_id')<1) {
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+        });
+        return;
+      }else {
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+      }
+
+    }
+    //获取数据
+    function getData(){
+      var user_id = localStorage.getItem('user_id');
+      var user_name = localStorage.getItem('user_name');
+      var user_time = localStorage.getItem('user_time');
+			var nickname = localStorage.getItem('user_nickname');
+			var jinbz  =  localStorage.getItem('user_jinb');
+			var tudz = localStorage.getItem('tud');
+			var dailix = localStorage.getItem('daili');
+			var dailiy ='';
+      var s1 = formatDateTime(user_time);
+      var timestamp = Date.parse(new Date())/1000;
+      var time = $api.byId('time');
+      var islogin = $api.byId('islogin');
+			var min = $api.byId('min');
+			var jinbxs = $api.byId('jinb');
+			var tudixs = $api.byId('tud');
+			if (dailix==1){
+				dailiy="代理 ";
+				hui('#lookdl').show();
+				hui('#adddl').hide();
+			}else{
+				dailiy='';
+				hui('#lookdl').hide();
+				hui('#adddl').show();
+			}
+
+      if (user_time>timestamp) {
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP '+s1+' 到期';
+      }
+      if (user_time<timestamp) {
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP已到期 请及时续费';
+      }
+      if(user_time == "-1") {
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> 永久贵宾VIP';
+      }
+      if (localStorage.getItem('user_id')<1) {
+        time.innerHTML = '请先登录';
+      }else if (localStorage.getItem('user_id')>1 && localStorage.getItem('user_nickname')!==""){
+      			min.innerHTML = dailiy+nickname;
+						jinbxs.innerHTML = jinbz;
+						tudixs.innerHTML = tudz;
+						islogin.innerHTML = "";
+
+      	}else{
+      	min.innerHTML = dailiy+'UID: '+user_id;
+      	jinbxs.innerHTML = jinbz;
+      	tudixs.innerHTML = tudz;
+
+      }
+
+      if (user_id>0) {
+        api.ajax({
+            url: service_url+'/login/login/sign.html',
+            method: 'get',
+            data: {
+                values: {
+                    uid: user_id
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+
+                shareid.innerHTML = ret.msg['jinbi']+'<small> 分</small>';
+            } else {
+                alert('网络错误');
+            }
+        });
+
+        if (user_time>timestamp) {
+          invip.innerHTML = '<i class="iconfont icon-VIP" style="font-size:0.8rem;color:#fff940;"></i>VIP会员';
+          stime.innerHTML = time+'<small> 天</small>';
+        }else if (user_time == -1) {
+          invip.innerHTML = '<i class="iconfont icon-VIP" style="font-size:0.8rem;color:#fff940;"></i>永久VIP';
+          stime.innerHTML = '<small> 一万年</small>';
+        }else if (user_time<timestamp) {
+          stime.innerHTML = '<small> 已到期</small>';
+        }else if (time == 0) {
+          stime.innerHTML = '<small>体验卡</small>';
+        }
+      }else {
+        islogin.style.display = "none";
+        no_login.style.display = "block";
+        invip.style.display = "none";
+        otbtn.style.display = "none";
+        indata.style.display = "none";
+        api.hideProgress();
+
+      }
+    }
+
+    function formatDateTime(timeStamp) {
+        var date = new Date();
+        date.setTime(timeStamp * 1000);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        second = second < 10 ? ('0' + second) : second;
+        return y + '-' + m + '-' + d;
+    };
+
+
+    function toLogin(){
+      if (localStorage.getItem('user_id')>0) {
+          api.openWin({
+              name: 'open_vip_win',
+              url: './open_vip_win.html',
+              delay: 300,
+          });
+      }else {
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            delay: 300,
+        });
+      }
+    }
+		function totudi(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'tudi_win',
+							url: './tudi_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+  function tojinbi(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'jifen_win',
+							url: './jifen_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+
+function renwu(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'shezi',
+							url: './shezhi_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+
+function daili(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'daili_login_win',
+							url: './daili_login_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+
+		function dailishow(){
+					if (localStorage.getItem('user_id')>0) {
+							api.openWin({
+									name: 'dailishow_win',
+									url: './dailishow_win.html',
+									delay: 300,
+							});
+					}else {
+						api.openWin({
+								name: 'login',
+								url: './login.html',
+								delay: 300,
+						});
+					}
+				}
+
+		function caiwu(){
+					if (localStorage.getItem('user_id')>0) {
+							api.openWin({
+									name: 'caiwulog_win',
+									url: './caiwulog_win.html',
+									delay: 300,
+							});
+					}else {
+						api.openWin({
+								name: 'login',
+								url: './login.html',
+								delay: 300,
+						});
+					}
+				}
+
+				function adhz(){
+							if (localStorage.getItem('user_id')>0) {
+									api.openWin({
+											name: 'adhz_win',
+											url: 'danye/adhz_win.html',
+											delay: 300,
+									});
+							}else {
+								api.openWin({
+										name: 'login',
+										url: './login.html',
+										delay: 300,
+								});
+							}
+						}
+
+			function mkmoney(){
+						if (localStorage.getItem('user_id')>0) {
+								api.openWin({
+										name: 'makemn_win',
+										url: 'danye/makemn_win.html',
+										delay: 300,
+								});
+						}else {
+							api.openWin({
+									name: 'login',
+									url: './login.html',
+									delay: 300,
+							});
+						}
+					}
+
+		function qiandao(){
+			if (localStorage.getItem('user_id')>0) {
+				var qdfbxx = Math.floor(Math.random()*30+5);
+				light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+						 api.ajax({
+						 	url: 'http://tv.beben.cn/login/login/qiand.html',
+						 	method: 'get',
+						 	data: {
+						 			values: {
+						 					uid: localStorage.getItem('user_id'),
+						 				qdjbx: qdfbxx
+						 			}
+						 	}
+						 },function(ret, err){
+						 	if (ret) {
+						 		if (ret.code == 1) {
+									var qdfbxx = Math.floor(Math.random()*30+5);
+									light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+									var light_qqx = document.querySelector('#light_qq');
+									var fadex = document.querySelector('#fade');
+									var jinbdom = document.querySelector('#jinb');
+									var jinbsz = Number(jinbdom.innerText);
+						 			var qiandd = document.querySelector('#qiandaon');
+									    light_qqx.style.display="block";
+											fadex.style.display="block";
+						 			    qiandd.disabled="disabled";
+											jinbdom.innerHTML=jinbsz+qdfbxx;
+						 			    setTimeout("closeWindow()","3000");
+						 }else if (ret.code == 0) {
+						 			api.hideProgress();
+									alert('您今天已经签到过了！^-^');
+						 			}
+						 		}
+						 });
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+		   }
+		 }
+
+	 function closeWindow(){
+		         document.getElementById('light_weixin').style.display='none';
+		        document.getElementById('light_qq').style.display='none';
+		         document.getElementById('fade').style.display='none';
+		    }
+
+    function toVip(){
+      if (user_id>0) {
+        api.openWin({
+            name: 'open_vip_win',
+            url: './open_vip_win.html',
+            delay: 300,
+        });
+
+      }else {
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+            delay: 300,
+        });
+
+      }
+
+    }
+		///////代理登录方法  s  //////
+
+		///////代理登录方法  s  //////
+
+		//获取数据
+		function DailiLogin() {
+			/*  var user_id = localStorage.getItem('user_id');
+			  var user_name = localStorage.getItem('user_name');
+			  var user_password = localStorage.getItem('password');
+			  var user_power = localStorage.getItem('power');   //权力  用于判断管理员
+			  //alert(user_time);
+			*/
+
+			if(localStorage.getItem('user_id') < 1) {
+				//如果没登陆
+
+				api.toast({
+					msg: '(ｷ｀ﾟДﾟ´)!!    你还没登陆！',
+					duration: 2000
+				});
+
+				api.openWin({
+					name: 'login',
+					url: './login.html',
+					delay: 2000
+				});
+				return;
+
+			}
+
+			//普通用户检测
+			if(localStorage.getItem('user_name') != null && localStorage.getItem('user_name') != undefined && localStorage.getItem('user_name') != '' && localStorage.getItem('user_name') != '') {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 0) {
+							/*    api.hideProgress();
+             alert('账号或密码不正确');
+原弹窗提示*/
+							api.toast({
+								msg: '密码不正确或无权限！',
+								duration: 5000
+							});
+
+							NoAgencyAuthority()
+
+							return;
+						} else if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '验证成功 正在登录',
+								duration: 5000
+							});
+
+							//alert( JSON.stringify( ret ) );
+							/*
+               api.sendEvent({
+                 name: 'newLoingdata',
+                 extra: {
+                 }
+               });
+
+
+
+               api.hideProgress();
+
+         api.closeWin({
+               });
+
+            api.openWin({
+                 name: 'h5',
+                 url: 'http://tv.beben.cn/index/index/index',
+                });
+*/
+			var delay = 0;
+			if(api.systemType != 'ios') {
+				delay = 300;
+			}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/index/index'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						}
+					} else {
+						api.hideProgress();
+						/*   alert('网络错误！');
+						      原弹窗提示*/
+						api.toast({
+							msg: '(ｷ｀ﾟДﾟ´)!!  网络错误 请检查！',
+							duration: 5000
+						});
+
+						//alert( JSON.stringify( err ) );
+						return;
+					}
+				});
+
+			}
+
+			//管理员登录
+			if(localStorage.getItem('user_id') == 1) {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '管理员登录',
+								duration: 5000
+							});
+			var delay = 0;
+			if(api.systemType != 'ios') {
+				delay = 300;
+			}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/index/index'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						} else {
+							api.hideProgress();
+							return;
+						}
+					}
+
+				});
+
+			}
+
+		}
+
+		///////代理登录方法  E  //////
+
+		///////代理取码方法  s  //////
+
+		//获取数据
+		function DailiQuma() {
+			var user_id = localStorage.getItem('user_id');
+			var user_name = localStorage.getItem('user_name');
+			var user_password = localStorage.getItem('password');
+			var user_power = localStorage.getItem('power'); //权力  用于判断管理员
+			//alert(user_time);
+
+			if(localStorage.getItem('user_id') < 1) {
+				//如果没登陆
+
+				api.toast({
+					msg: '(ｷ｀ﾟДﾟ´)!!    你还没登陆！',
+					duration: 2000
+				});
+
+				api.openWin({
+					name: 'login',
+					url: './login.html',
+					delay: 2000
+				});
+				return;
+
+			}
+			//普通用户登录检测
+			if(localStorage.getItem('user_name') != null && localStorage.getItem('user_name') != undefined && localStorage.getItem('user_name') != '') {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 0) {
+							/*    api.hideProgress();
+             alert('账号或密码不正确');
+原弹窗提示*/
+							api.toast({
+								msg: '密码不正确或无权限！',
+								duration: 5000
+							});
+
+							NoAgencyAuthority()
+
+							return;
+						} else if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '验证成功 正在登录',
+								duration: 5000
+							});
+
+							//alert( JSON.stringify( ret ) );
+							/*
+               api.sendEvent({
+                 name: 'newLoingdata',
+                 extra: {
+                 }
+               });
+
+
+
+               api.hideProgress();
+
+         api.closeWin({
+               });
+
+            api.openWin({
+                 name: 'h5',
+                 url: 'http://tv.beben.cn/index/index/index',
+                });
+*/
+var delay = 0;
+			if(api.systemType != 'ios') {
+				delay = 300;
+			}
+							var delay = 0;
+							if(api.systemType != 'ios') {
+								delay = 300;
+							}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/dianka/index'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						}
+					} else {
+						api.hideProgress();
+						/*   alert('网络错误！');
+						      原弹窗提示*/
+						api.toast({
+							msg: '(ｷ｀ﾟДﾟ´)!!  网络错误 请检查！',
+							duration: 5000
+						});
+
+						//alert( JSON.stringify( err ) );
+						return;
+					}
+				});
+
+			}
+
+			//管理员取码
+			if(localStorage.getItem('user_id') == 1) {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '管理员登录',
+								duration: 5000
+							});
+			var delay = 0;
+			if(api.systemType != 'ios') {
+				delay = 300;
+			}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/dianka/index'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						} else {
+							api.hideProgress();
+							return;
+						}
+					}
+
+				});
+
+			}
+
+		}
+
+		///////代理取码方法  E  //////
+
+		///////代理设置方法  s  //////
+
+		//获取数据
+		function DailiShezhi() {
+			var user_id = localStorage.getItem('user_id');
+			var user_name = localStorage.getItem('user_name');
+			var user_password = localStorage.getItem('password');
+			var user_power = localStorage.getItem('power'); //权力  用于判断管理员
+			//alert(user_time);
+
+			if(localStorage.getItem('user_id') < 1) {
+				//如果没登陆
+
+				api.toast({
+					msg: '(ｷ｀ﾟДﾟ´)!!    你还没登陆！',
+					duration: 2000
+				});
+
+				api.openWin({
+					name: 'login',
+					url: './login.html',
+					delay: 2000
+				});
+				return;
+
+			}
+			//普通用户登录检测
+			if(localStorage.getItem('user_name') != null && localStorage.getItem('user_name') != undefined && localStorage.getItem('user_name') != '') {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 0) {
+							/*    api.hideProgress();
+             alert('账号或密码不正确');
+原弹窗提示*/
+							api.toast({
+								msg: '密码不正确或无权限！',
+								duration: 5000
+							});
+
+							NoAgencyAuthority()
+
+							return;
+						} else if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '验证成功 正在登录',
+								duration: 5000
+							});
+
+							//alert( JSON.stringify( ret ) );
+							/*
+               api.sendEvent({
+                 name: 'newLoingdata',
+                 extra: {
+                 }
+               });
+
+
+
+               api.hideProgress();
+
+         api.closeWin({
+               });
+
+            api.openWin({
+                 name: 'h5',
+                 url: 'http://tv.beben.cn/index/index/index',
+                });
+*/
+							var delay = 0;
+							if(api.systemType != 'ios') {
+								delay = 300;
+							}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/user/pass'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						}
+					} else {
+						api.hideProgress();
+						/*   alert('网络错误！');
+						      原弹窗提示*/
+						api.toast({
+							msg: '(ｷ｀ﾟДﾟ´)!!  网络错误 请检查！',
+							duration: 5000
+						});
+
+						//alert( JSON.stringify( err ) );
+						return;
+					}
+				});
+
+			}
+
+			//管理员APP设置
+			if(localStorage.getItem('user_id') == 1) {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '管理员登录',
+								duration: 5000
+							});
+			var delay = 0;
+			if(api.systemType != 'ios') {
+				delay = 300;
+			}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/user/pass'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						} else {
+							api.hideProgress();
+							return;
+						}
+					}
+
+				});
+
+			}
+
+		}
+
+		///////代理设置方法  E  //////
+
+		///////代理用户管理方法  s  //////
+
+		//获取数据
+		function DailiGuanLi() {
+			var user_id = localStorage.getItem('user_id');
+			var user_name = localStorage.getItem('user_name');
+			var user_password = localStorage.getItem('password');
+			var user_power = localStorage.getItem('power'); //权力  用于判断管理员
+			//alert(user_time);
+
+			if(localStorage.getItem('user_id') < 1) {
+				//如果没登陆
+
+				api.toast({
+					msg: '(ｷ｀ﾟДﾟ´)!!    你还没登陆！',
+					duration: 2000
+				});
+
+				api.openWin({
+					name: 'login',
+					url: './login.html',
+					delay: 2000
+				});
+				return;
+
+			}
+			//普通用户登录检测
+			if(localStorage.getItem('user_name') != null && localStorage.getItem('user_name') != undefined && localStorage.getItem('user_name') != '') {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 0) {
+							NoAgencyAuthority()
+							return;
+						} else if(ret.code == 1) {
+							api.toast({
+								msg: '验证成功 正在登录',
+								duration: 5000
+							});
+							var delay = 0;
+							if(api.systemType != 'ios') {
+								delay = 300;
+							}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/vip/index'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+						}
+					} else {
+						api.hideProgress();
+						/*   alert('网络错误！');
+						      原弹窗提示*/
+						api.toast({
+							msg: '(ｷ｀ﾟДﾟ´)!!  网络错误 请检查！',
+							duration: 5000
+						});
+
+						//alert( JSON.stringify( err ) );
+						return;
+					}
+				});
+
+			}
+
+			//管理员用户管理
+			if(localStorage.getItem('user_id') == 1) {
+
+				api.ajax({
+					url: service_url + '/login/login/veify',
+					method: 'POST',
+					data: {
+						values: {
+							username: localStorage.getItem('user_name'),
+							passwd: localStorage.getItem('password'),
+						}
+					}
+				}, function(ret, err) {
+					if(ret) {
+						if(ret.code == 1) {
+							/*       alert('登录成功');
+							      原弹窗提示  */
+							api.toast({
+								msg: '管理员登录',
+								duration: 5000
+							});
+							var delay = 0;
+							if(api.systemType != 'ios') {
+								delay = 300;
+							}
+							api.openWin({
+								name: 'daili_guanli_win',
+								url: './daili_guanli_win.html',
+								delay: 800,
+								pageParam: {
+									url: 'http://tv.beben.cn/index/vip/index'
+								},
+								bgColor: 'rgba(0,0,0,0)'
+							});
+
+						} else {
+							api.hideProgress();
+							return;
+						}
+					}
+
+				});
+
+			}
+
+		}
+
+		///////代理用户管理方法  E  //////
+
+		//////////////////////    代理登录无权限提示 方法 NoAgencyAuthority  s  //////////////////////
+		function NoAgencyAuthority() {
+
+			/*理登录无权限弹窗提示*/
+			var dialogBox = api.require('dialogBox');
+			dialogBox.alert({
+				tapClose: true, //描述：（可选项）是否点击遮罩层关闭该对话框  默认值：false
+				texts: {
+					content: '没有权限',
+					leftBtnTitle: '以后再说',
+					rightBtnTitle: '升级代理'
+				},
+				styles: {
+					bg: '#fff', //（可选项）字符串类型；对话框整体背景配置，支持#、rgb、rgba、img；默认：#fff
+					corner: 10, //（可选项）数字类型；对话框背景圆角大小；默认：2
+					w: 300, //（可选项）数字类型；对话框的宽；默认：300
+					title: { //（可选项）JSON对象；弹窗标题栏样式配置，不传则不显示标题区域
+						marginT: 20, //（可选项）数字类型；标题栏与对话框顶端间距；默认：20
+						icon: 'widget://image/app/dialogBoxTisi.jpg', //（可选项）字符串类型；标题前面的图标路径，要求本地路径（widget://、fs://）；图片为正方形的，如：50*50、100*100，建议开发者传大小合适的图片以适配高分辨率手机屏幕，不传则不显示
+						iconSize: 80, //（可选项）数字类型；icon 图标边长大小,若 icon 不存在则此参数无效；默认：24
+						titleSize: 14, //（可选项）数字类型；标题字体大小；默认：14
+						titleColor: '#000' //（可选项）字符串类型；标题字体颜色，支持#、rgb、rgba；默认：#fff
+					},
+					content: { //（可选项）JSON 对象；文本内容配置，若不传则不显示该区域
+						marginT: 20, //（可选项）数字类型；内容文本顶端与标题栏底端的距离，如果标题栏不存在，则是到窗口顶端的距离；默认：20
+						marginB: 40, //（可选项）数字类型；内容文本底端与 left/right 顶端的距离，如果 left/right 都不存在，则是到对话框底端的距离；默认：20
+						color: '#ff0103', //（可选项）字符串类型；内容文本字体颜色，支持 rgb、rgba、#；默认：#eee
+						size: 12 //（可选项）数字类型：内容文本字体大小；默认：12
+					},
+					left: { //（可选项）JSON 对象；左边按钮样式配置，不传则不显示左边按钮
+						marginB: 30, //（可选项）数字类型；左边按钮的下边距；默认：7
+						marginL: 30, //（可选项）数字类型；左边按钮的左边距；默认：20
+						w: 100, //（可选项）数字类型；左边按钮的宽；默认：130
+						h: 40, //（可选项）数字类型；左边按钮的高；默认：35
+						corner: 10, //（可选项）数字类型；左边按钮圆角半径；默认：0.0
+						bg: '#3d3d3d', //（可选项）字符串类型；左边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+						color: '#fff', //（可选项）字符串类型；左边按钮标题字体颜色，支持rgb，rgba、#；默认：'#007FFF'
+						size: 12 //（可选项）数字类型；左边按钮标题字体大小；默认：12
+					},
+					right: { //（可选项）JSON 对象；右边按钮样式配置，不传则不显示右边按钮
+						marginB: 30, //（可选项）数字类型；右边按钮的下边距；默认：7
+						marginL: 40, //（可选项）数字类型；右边按钮左边距；默认：10
+						w: 100, //（可选项）数字类型；右边按钮的宽；默认：130
+						h: 40, //（可选项）数字类型；右边按钮的高；默认：35
+						corner: 10, //（可选项）数字类型；右边按钮圆角半径；默认：0.0
+						bg: '#ff0103', //（可选项）字符串类型；右边按钮的背景，支持rgb、rgba、#、img；默认：'#e0e'
+						color: '#fff', //（可选项）字符串类型；右边按钮标题字体颜色，支持rgb、rgba、#；默认：'#007FFF'
+						size: 12 //（可选项）数字类型；右边按钮标题字体大小；默认：12
+					}
+				}
+			}, function(ret) {
+				if(ret.eventType == 'left') {
+					var dialogBox = api.require('dialogBox');
+					dialogBox.close({
+						dialogName: 'alert'
+					});
+				} else if(ret.eventType == 'right') {
+					api.openWin({
+						name: 'open_agent_win',
+						url: './open_agent_win.html',
+						delay: 300
+					});
+					var dialogBox = api.require('dialogBox');
+					dialogBox.close({
+						dialogName: 'alert'
+					});
+				}
+			});
+			/*    理登录无权限弹窗提示结束    */
+
+		}
+		//////////////////////    代理登录无权限提示 方法 NoAgencyAuthority  E  //////////////////////
+		///////代理登录方法  E  //////
+
+
+				////////////手动开始下拉刷新的加载状态 方法  fnRefreshHeaderLoading   S   ////////////
+		function fnRefreshHeaderLoading() {
+			api.refreshHeaderLoading();
+		};
+		////////////手动开始下拉刷新的加载状态 方法  fnRefreshHeaderLoading   E   ////////////
+
+
+    //退出登录
+    function exitLogin(){
+      api.sendEvent({
+        name: 'newLoingdata',
+        extra: {
+        }
+      });
+      api.showProgress({
+          title: '稍后...',
+          text: '正在退出...',
+          modal: false
+      });
+      localStorage.setItem('user_id','');
+      localStorage.setItem('user_name','');
+      localStorage.setItem('user_time','');
+      api.toast({
+          msg: '请重新登陆'
+      });
+      api.openWin({
+      });
+
+    }
+
+      function openWin(name){
+            var delay = 0;
+            if(api.systemType != 'ios'){
+                delay = 300;
+            }
+            api.openWin({
+                name: ''+name+'',
+                url: ''+name+'.html',
+                bounces:false,
+                delay: delay,
+                slidBackEnabled:true,
+                vScrollBarEnabled:false
+            });
+        }
+
+
+    //清楚缓存
+    function cleaCache(){
+      api.clearCache(function() {
+          api.toast({
+              msg: '清除完成'
+          });
+          getCache();
+      });
+    }
+
+
+</script>
+
+<script type="text/javascript">
+
+
+  function imgUrl(img){
+    if (img=='img1') {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: localStorage.getItem('fxurl1')
+          }
+      });
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: localStorage.getItem('fxurl2')
+          }
+      });
+    }
+
+  }
+
+
+  //访问轮播地址
+  function toBanner(url){
+
+    if (url == '') {
+
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: url
+          }
+      });
+    }
+  }
+
+
+
+
+  //幻灯轮播图
+  function banNer(){
+    var slide = new auiSlide({
+        container:document.getElementById("aui-slide"),
+        // "width":300,
+        "height":150,
+        "speed":300,
+        "pageShow":true,
+        "autoPlay": 5000,
+        "pageStyle":'dot',
+        "loop":true,
+        'dotPosition':'center',
+    });
+  }
+
+
+  //更新app  （在apicloud进行）
+
+  function checkUpdate() {
+var mam = api.require('mam');
+mam.checkUpdate(function(ret, err) {
+if (ret) {
+  var result = ret.result;
+  if (result.update == true && result.closed == false) {
+      var str = '新版本号:' + result.version + ';\n更新提示:' + result.updateTip  //下载地址:' + ';发布时间:' + result.time; + result.source + '; 需要的可以加上去
+      api.confirm({
+          title : '有新的版本,是否下载并安装 ',
+          msg : str,
+          buttons : ['确定', '取消']
+      }, function(ret, err) {
+          if (ret.buttonIndex == 1) {
+              if (api.systemType == "android") {
+                  api.download({
+                      url : result.source,
+                      report : true
+                  }, function(ret, err) {
+                      if (ret && 0 == ret.state) {/* 下载进度 */
+                          api.toast({
+                              msg : "正在下载应用" + ret.percent + "%",
+                              duration : 2000
+                          });
+                      }
+                      if (ret && 1 == ret.state) {/* 下载完成 */
+                          var savePath = ret.savePath;
+                          api.installApp({
+                              appUri : savePath
+                          });
+                      }
+                  });
+              }
+              if (api.systemType == "ios") {
+                  api.installApp({
+                      appUri : result.source
+                  });
+              }
+          }
+      });
+  } else {
+      api.alert({
+          msg : "已是最新版，无需更新！"
+      });
+  }
+} else {
+  api.alert({
+      msg : err.msg
+  });
+}
+});
+}
+  function look_record(){
+	api.openWin({
+	    name: 'look_record',
+	    url: 'look_record.html'
+    });
+}
+</script>
+
+</html>

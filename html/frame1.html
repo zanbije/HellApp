@@ -1,0 +1,1326 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+<link rel="stylesheet" type="text/css" href="../css/base.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+<link rel="stylesheet" type="text/css" href="../css/auislide.css" />
+<link rel="stylesheet" href="../css/zhibo.css">
+<title>title</title>
+</head>
+<body>
+<li>
+<div class="weui-grid js_grid" onClick="vList()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/video.png" >
+</center>
+<p class="text">最新电影</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onClick="tvList()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/tv.png" >
+</center>
+<p class="text">电视直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onClick="gameList()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/game.png" >
+</center>
+<p class="text">游戏直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onClick="mnList()">
+<center>
+<img class="zhiboImg" src="../image/fulishe.jpg" >
+</center>
+<p class="text">福利直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://live.bilibili.com/')">
+<center>
+<img class="zhiboImg" src="../image/bilibili.png" >
+</center>
+<p class="text">哔哩直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://www.yy.com/')">
+<center>
+<img class="zhiboImg" src="../image/YY.png" >
+</center>
+<p class="text">YY直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://www.huya.com/l')">
+<center>
+<img class="zhiboImg" src="../image/huya.png" >
+</center>
+<p class="text">虎牙直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://www.huajiao.com/')">
+<center>
+<img class="zhiboImg" src="../image/hujiao.png" >
+</center>
+<p class="text">花椒直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://www.douyu.com/')">
+<center>
+<img class="zhiboImg" src="../image/douyu.png" >
+</center>
+<p class="text">斗鱼直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://www.panda.tv/')">
+<center>
+<img class="zhiboImg" src="../image/xiognmao.png" >
+</center>
+<p class="text">熊猫直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://longzhu.com/channels/all')">
+<center>
+<img class="zhiboImg" src="../image/lognzu.png" >
+</center>
+<p class="text">龙珠直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://www.meipai.com/live')">
+<center>
+<img class="zhiboImg" src="../image/meipaizhibo.png" >
+</center>
+<p class="text">美拍直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://www.inke.cn/hotlive_list.html')">
+<center>
+<img class="zhiboImg" src="../image/yingke.png" >
+</center>
+<p class="text">映客直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://www.zhanqi.tv/lives')">
+<center>
+<img class="zhiboImg" src="../image/zhanqi.png" >
+</center>
+<p class="text">战旗直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://v.6.cn/minivideo/')">
+<center>
+<img class="zhiboImg" src="../image/jinbo.png" >
+</center>
+<p class="text">劲爆直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://www.95xiu.com/')">
+<center>
+<img class="zhiboImg" src="../image/neinv.png" >
+</center>
+<p class="text">诱惑直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://cc.163.com/category/live/')">
+<center>
+<img class="zhiboImg" src="../image/CCzhibo.png" >
+</center>
+<p class="text">CC直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://live.kuaishou.com/cate/DQRM/')">
+<center>
+<img class="zhiboImg" src="../image/kauishou.png" >
+</center>
+<p class="text">快手直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://v.sigu.me/first.php')">
+<center>
+<img class="zhiboImg" src="../image/dianying.png" >
+</center>
+<p class="text">最新电影</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://music.bbbbbb.me/')">
+<center>
+<img class="zhiboImg" src="../image/yinyue.png" >
+</center>
+<p class="text">全网音乐</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://m.haoqu.net/')">
+<center>
+<img class="zhiboImg" src="../image/dianshi.png" >
+</center>
+<p class="text">全球电视</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('http://www.ku6.com/detail/80')">
+<center>
+<img class="zhiboImg" src="../image/ku6.png" >
+</center>
+<p class="text">K6视频</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onClick="openVipurl('https://m.bilibili.com/channel/138.html')">
+<center>
+<img class="zhiboImg" src="../image/gaoxiao.png" >
+</center>
+<p class="text">爆笑视频</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onClick="List()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/daixu.png" >
+</center>
+<p class="text">待更新</p>
+</div>
+</li>
+
+</body>
+<script type="text/javascript" src="../js/public.js"></script>
+<script type="text/javascript">
+
+  function vList(){
+  var delay = 0;
+  if(api.systemType != 'ios'){
+      delay = 300;
+  }
+  api.openWin({
+      name: 'v_list_win',
+      url: 'v_list_win.html',
+      bounces:false,
+      delay: delay,
+      slidBackEnabled:true,
+      vScrollBarEnabled:false,
+  });
+}
+
+function tvList(){
+  var delay = 0;
+  if(api.systemType != 'ios'){
+      delay = 300;
+  }
+  api.openWin({
+      name: 'tv_list_win',
+      url: 'tv_list_win.html',
+      bounces:false,
+      delay: delay,
+      slidBackEnabled:true,
+      vScrollBarEnabled:false,
+  });
+}
+
+function mnList(){
+	var delay = 0;
+	if(api.systemType != 'ios'){
+			delay = 300;
+	}
+	api.openWin({
+			name: 'v_mn_win',
+			url: 'v_mn_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function zhiboList(){
+	var delay = 0;
+	if(api.systemType != 'ios'){
+			delay = 300;
+	}
+	api.openWin({
+			name: 'zhibo_win',
+			url: 'zhibo_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+
+
+function gameList(){
+	var delay = 0;
+	if(api.systemType != 'ios'){
+			delay = 300;
+	}
+	api.openWin({
+			name: 'game_list_win',
+			url: 'game_list_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+function fenlei(){
+	var delay = 0;
+	if(api.systemType != 'ios'){
+			delay = 300;
+	}
+	api.openWin({
+			name: 'fenlei_win',
+			url: 'fenlei_win.html',
+			bounces:false,
+			delay: delay,
+			slidBackEnabled:true,
+			vScrollBarEnabled:false,
+	});
+}
+
+  function imgUrl(url){
+    api.openWin({
+        name: 'h5',
+        url: './h5.html',
+        pageParam: {
+            url: url
+        }
+    });
+  }
+
+  //打开播放页
+  function openLive(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'video_win',
+          url: './video_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'video_win',
+          url: './video_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function openVipurl(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+     if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function playRadio(){
+    api.hideProgress();
+  }
+
+		////////////手动开始下拉刷新的加载状态 方法  fnRefreshHeaderLoading   S   ////////////
+		function fnRefreshHeaderLoading() {
+			api.refreshHeaderLoading();
+		};
+		////////////手动开始下拉刷新的加载状态 方法  fnRefreshHeaderLoading   E   ////////////
+
+  //访问轮播地址
+  function toBanner(url){
+
+    if (url == '') {
+
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: url
+          }
+      });
+    }
+  }
+
+  //菜单导航获取
+  function getBanner(){
+    var bannerid = $api.byId('slidebox');
+    var bannertpl = $api.byId('bannertpl');
+
+    api.ajax({
+        url: service_url+'/login/login/banben.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          localStorage.setItem('user_advert',ret.advert);
+          var advert = $api.byId('gonggao');
+          advert.innerHTML = localStorage.getItem('user_advert');
+            localStorage.setItem('jx_url1',ret.banben);
+            localStorage.setItem('jx_url2',ret.url);
+            localStorage.setItem('jx_url3',ret.url2);
+            localStorage.setItem('jx_url4',ret.url3);
+            localStorage.setItem('jx_url5',ret.url4);
+            localStorage.setItem('jx_url6',ret.url5);
+            localStorage.setItem('hburl',ret.hburl);
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+    api.ajax({
+        url: service_url+'/app/nav',
+        method: 'get',
+    },function(ret, err){
+        if (ret) {
+          //渲染模板
+          var pagefn = doT.template(bannertpl.text);
+          bannerid.innerHTML = pagefn(ret.banner);
+//      alert( JSON.stringify( ret.banner ) );
+          banNer();
+
+        } else {
+            alert( '网络错误' );
+            api.hideProgress();
+        }
+    });
+  }
+  //轮播图获取
+  function getNav(){
+    var navid = $api.byId('div_list_f');
+    var navtpl = $api.byId('navcattpl');
+    var navtjid = $api.byId('div_list');
+    var navtjtpl = $api.byId('navtjtpl');
+    var lrid = $api.byId('lrbox');
+    var lrtpl = $api.byId('lrtpl');
+    var wztid = $api.byId('wzbox_top');
+    var wzttpl = $api.byId('wzttpl');
+    var wzbid = $api.byId('wzbox_bottom');
+    var wzbtpl = $api.byId('wzbtpl');
+    api.ajax({
+        url: service_url+'/app/nav',
+        method: 'get',
+    },function(ret, err){
+        if (ret) {
+          //渲染模板
+          var pagefn = doT.template(navtpl.text);
+          navid.innerHTML = pagefn(ret.vip);
+          var pagefn = doT.template(navtjtpl.text);
+          navtjid.innerHTML = pagefn(ret.tj);
+          var fn = doT.template(lrtpl.text);
+          lrid.innerHTML = fn(ret.lr);
+          var fns = doT.template(wzttpl.text);
+          var wzd=ret.wz;
+          wztid.innerHTML = fns(wzd.data[0]);
+          var fn = doT.template(wzbtpl.text);
+          wzbid.innerHTML = fn(wzd.data[1]);
+//        alert( JSON.stringify( ret ) );
+
+
+        } else {
+            alert( '网络错误' );
+            api.hideProgress();
+        }
+    });
+  }
+
+
+  function openWin(name){
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: ''+name+'',
+          url: ''+name+'.html',
+          bounces:false,
+          delay: delay,
+          slidBackEnabled:true,
+          vScrollBarEnabled:false
+      });
+  }
+  function imgUrl(url){
+    api.openWin({
+        name: 'h5',
+        url: './h5.html',
+        pageParam: {
+            url: url
+        }
+    });
+  }
+
+  //打开播放页
+  function openLive(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'video_win',
+          url: './video_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'video_win',
+          url: './video_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function openVipurl(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+     if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function playRadio(){
+    api.hideProgress();
+  }
+
+
+
+  //访问轮播地址
+  function toBanner(url){
+
+    if (url == '') {
+
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: url
+          }
+      });
+    }
+  }
+
+  //菜单导航获取
+  function getBanner(){
+    var bannerid = $api.byId('slidebox');
+    var bannertpl = $api.byId('bannertpl');
+
+    api.ajax({
+        url: service_url+'/login/login/banben.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          localStorage.setItem('user_advert',ret.advert);
+          var advert = $api.byId('gonggao');
+          advert.innerHTML = localStorage.getItem('user_advert');
+            localStorage.setItem('jx_url1',ret.banben);
+            localStorage.setItem('jx_url2',ret.url);
+            localStorage.setItem('jx_url3',ret.url2);
+            localStorage.setItem('jx_url4',ret.url3);
+            localStorage.setItem('jx_url5',ret.url4);
+            localStorage.setItem('jx_url6',ret.url5);
+            localStorage.setItem('hburl',ret.hburl);
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+    api.ajax({
+        url: service_url+'/app/nav',
+        method: 'get',
+    },function(ret, err){
+        if (ret) {
+          //渲染模板
+          var pagefn = doT.template(bannertpl.text);
+          bannerid.innerHTML = pagefn(ret.banner);
+//      alert( JSON.stringify( ret.banner ) );
+          banNer();
+
+        } else {
+            alert( '网络错误' );
+            api.hideProgress();
+        }
+    });
+  }
+  //轮播图获取
+  function getNav(){
+      var navid = $api.byId('div_list_f');
+      var navtpl = $api.byId('navcattpl');
+      var navtjid = $api.byId('div_list');
+      var navtjtpl = $api.byId('navtjtpl');
+      var lrid = $api.byId('lrbox');
+      var lrtpl = $api.byId('lrtpl');
+      var wztid = $api.byId('wzbox_top');
+      var wzttpl = $api.byId('wzttpl');
+      var wzbid = $api.byId('wzbox_bottom');
+      var wzbtpl = $api.byId('wzbtpl');
+    api.ajax({
+        url: service_url+'/app/nav',
+        method: 'get',
+    },function(ret, err){
+        if (ret) {
+          //渲染模板
+          var pagefn = doT.template(navtpl.text);
+          navid.innerHTML = pagefn(ret.vip);
+          var pagefn = doT.template(navtjtpl.text);
+          navtjid.innerHTML = pagefn(ret.tj);
+          var fn = doT.template(lrtpl.text);
+          lrid.innerHTML = fn(ret.lr);
+          var fns = doT.template(wzttpl.text);
+          var wzd=ret.wz;
+          wztid.innerHTML = fns(wzd.data[0]);
+          var fn = doT.template(wzbtpl.text);
+          wzbid.innerHTML = fn(wzd.data[1]);
+//        alert( JSON.stringify( ret ) );
+
+
+        } else {
+            alert( '网络错误' );
+            api.hideProgress();
+        }
+    });
+  }
+
+
+  function openWin(name){
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: ''+name+'',
+          url: ''+name+'.html',
+          bounces:false,
+          delay: delay,
+          slidBackEnabled:true,
+          vScrollBarEnabled:false
+      });
+  }
+
+  function imgUrl(url){
+    api.openWin({
+        name: 'h5',
+        url: './h5.html',
+        pageParam: {
+            url: url
+        }
+    });
+  }
+
+  //打开播放页
+  function openLive(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'video_win',
+          url: './video_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'video_win',
+          url: './video_win.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function openVipurl(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+     if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: './login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+
+  function playRadio(){
+    api.hideProgress();
+  }
+
+
+
+  //访问轮播地址
+  function toBanner(url){
+
+    if (url == '') {
+
+    }else {
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          pageParam: {
+              url: url
+          }
+      });
+    }
+  }
+
+
+  function openWin(name){
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: ''+name+'',
+          url: ''+name+'.html',
+          bounces:false,
+          delay: delay,
+          slidBackEnabled:true,
+          vScrollBarEnabled:false
+      });
+  }
+
+
+</script>
+</html>

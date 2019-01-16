@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background:#fdca00;font-size:16px">
+      <a class="aui-btn aui-pull-left"  tapmode onclick="closeWin() "style="color:#FFF">
+          <span class="aui-iconfont aui-icon-left" style="color:#FFF"> </span>返回
+      </a>
+      <div id="title" class="aui-title" style="color:#FFF">最新电影抢先看</div>
+  </header>
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+  apiready = function(){
+    var dialogBox = api.require('dialogBox');
+    dialogBox.taskPlan({
+        rect: {
+            w: 300,
+            h: 350
+        },
+        texts: {
+
+            subTitle: '如果这里没有您想要观看的电影，请在首页留言中心求片！本软件将会在第一时间为您添加！',
+            marginB: 10,
+            marginL: 20,
+            content: [{
+
+            }],
+            btnTitle: '关闭提示'
+        },
+        styles: {
+            bg: '#fff',
+            corner: 15,
+
+            sub: {
+                marginT: 22,
+                color: '#999999',
+                size: 14,
+            },
+
+            ok: {
+                marginB: 10,
+                marginL: 20,
+                w: 280,
+                h: 40,
+                bg: '#fff',
+                color: '#fc224b',
+                size: 18
+            }
+        }
+    }, function(ret) {
+        //alert(JSON.stringify(ret));
+        if (ret.eventType == 'ok') {
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'taskPlan'
+            });
+        }
+    });
+
+
+    api.parseTapmode();
+    var header = $api.byId('aui-header');
+    $api.fixStatusBar(header);
+    var headerPos = $api.offset(header);
+    var body_h = $api.offset($api.dom('body')).h;
+    api.openFrame({
+        name: 'v_list_frm',
+        url: 'v_list_frm.html',
+        bounces: true,
+        rect: {
+            x: 0,
+            y: headerPos.h,
+            w: 'auto',
+            h: 'auto'
+        }
+    });
+
+
+  }
+
+
+
+  function closeWin(){
+      api.closeWin({
+      });
+  }
+</script>
+</html>

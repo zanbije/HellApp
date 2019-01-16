@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+  <div class="wrap">
+    <!-- 游戏 -->
+    <div class="game-page">
+      <!-- 游戏列表 -->
+      <div class="game-list-wrap" id="gameList">
+        <ul class="clearfix" id="div_list">
+          <!-- <li>
+            <div class="game-a">
+              <img src="//m.zhanqi.tv/static/new-html5/image/default_pic.png?v=20160926" alt="">
+              <p class="game-list-name">加载中...</p>
+            </div>
+          </li> -->
+        </ul>
+      </div>
+      <!-- 游戏列表 end-->
+
+    </div>
+    <!-- 游戏 end-->
+  </div>
+</body>
+<script type="text/x-dot-template" id="template">
+{{~ it : value : index }}
+    <li>
+      <div class="game-a" onclick="openWin('{{= value. id }}')">
+        <img src="{{= value. img }}" alt="">
+        <p class="game-list-name">{{= value. name }}</p>
+      </div>
+    </li>
+{{~}}
+</script>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript">
+
+  var i = 1;
+  apiready = function(){
+    getList();
+
+
+
+
+  }
+
+  function getList(){
+    i = 1;
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: service_url+'/api/gamezhibo.php',
+        method: 'get',
+        data: {
+            values: {
+                lx: 'hqpt',
+                ys:1
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            //alert( JSON.stringify( ret ) );
+            var pagefn = doT.template(template.text);
+            div_list.innerHTML = pagefn(ret);
+            showData();
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+
+  }
+
+  function showData(){
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: service_url+'/api/gamezhibo.php',
+        method: 'get',
+        data: {
+            values: {
+                lx: 'hqpt',
+                ys:2
+            }
+        }
+    },function(ret, err){
+        if (ret) {
+            //alert( JSON.stringify( ret ) );
+            var pagefn = doT.template(template.text);
+            div_list.innerHTML += pagefn(ret);
+        } else {
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+  }
+
+  function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: 'zhubo_list_win',
+            url: 'zhubo_list_win.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false,
+            pageParam:{id:name}
+        });
+    }
+</script>
+</html>

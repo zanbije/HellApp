@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery mobile</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link rel="stylesheet" href="style/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" href="style/index.css">
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/jquery.mobile-1.4.5.min.js"></script>
+		<script src="js/index.js"></script>
+		<script>
+			(function (doc, win) {
+				var docEl = doc.documentElement,
+				resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+				recalc = function () {
+				var clientWidth = docEl.clientWidth;
+				if (!clientWidth) return;
+				docEl.style.fontSize = 100 * (clientWidth / 640) + 'px';
+				};
+				if (!doc.addEventListener) return;
+				win.addEventListener(resizeEvt, recalc, false);
+				doc.addEventListener('DOMContentLoaded', recalc, false);
+			})(document, window);
+		</script>		
+	</head>
+	<body>
+		 <div data-role="page" class="page1">
+			<div data-role="header">
+				<h1>常见问题</h1>
+			</div>
+			<div data-role="content">
+				<div data-role="collapsible-set" data-iconpos="none">
+					<div data-role="collapsible">
+						<h3>1.关于影视双端APP！</h3>
+						<p>1、2018最新影视APP，精心修改版，支持安卓和苹果，集合全网会员免费解析。链接视频的时候会自动识别，点击中间播放就可。增加线路至9条。</p>
+					</div>
+					<div data-role="collapsible">
+						<h3>2.如何观看VIP视频</h3>
+						<p>1、点击您想观看VIP视频的网站，找到想要观看的影片或剧集，看到加载成功 点击播放点击观看即可                           </p>
+						<p>2、如播放失败，请点击右上角刷新播放即可正常观看</p>
+					</div>
+					<div data-role="collapsible">
+						<h3>3.如何修改我的个人信息</h3>
+						<p>1、您可以选择在个人中心忘记密码直接修改，或联系客服协助您进行修改</p>
+                        <p>2、如果您需要更换手机号，请联系客服进行修改</p>
+					</div>
+					<div data-role="collapsible">
+						<h3>4.如何全屏观看，可以投屏吗</h3>
+						<p>1.打开手机自动旋转功能，播放界面加载完毕，影片正常播放过程中，手机横置，系统会自动全屏</p>
+                        <p>2.投屏功能我们正在研发中，相信很快会与大家见面</p>
+					</div>	
+					<div data-role="collapsible">
+						<h3>5.此APP都有什么功能</h3>
+						<p>1、可以看全网24家平台以上影视会员</p>
+						<p>2、国内外影院最新电影实时同步更新</p>
+						<p>3、如果没找到您需要的影片，您可以在首页VIP观影区进行留言，客服会第一时间为您更新</p>
+						<p>4、独家支持观看记录，这次看到一半下次直接接着看</p>
+						<p>5、完善的代理功能，支持在线直接付费开通代理</p>
+						<p>6、拥有了次界面功能任您自己定制</p>
+						<p>7、添加搜索功能！</p>
+					    <p>8、搭建此APP我们提供升级免费解析接口和付费VIP无广告一次解析接口{PS：经营影视APP最重要的是解析接口}</p>
+						
+                    </div>	                                                           
+					
+					<div data-role="collapsible">
+						<h3>6.为什么有些影片无法观看</h3>
+						<p>1.有些影片是暂时维护，稍等一会刷新一下即可正常观看</p>
+					</div>	
+					<div data-role="collapsible">
+						<h3>7.成为代理有什么好处</h3>
+					    <p>1、每个代理商都可发展下级代理商，开代理商后端，无限裂变</p>
+						<p>2、本公司成功案例诸多，至今已有2000多个APP搭建合作用户！</p>
+						<p>3、不论您是零售，代销，还是引流，都是绝佳的选择！！</p>
+					</div>	                    				
+				</div>
+			</div>
+		  </div>
+		
+	</body>
+</html>

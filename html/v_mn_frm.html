@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui1.css" />
+    <link rel="stylesheet" href="../css/base1.css">
+
+</head>
+<body>
+  <div class="wrap">
+    <!-- 游戏 -->
+    <div class="game-page">
+
+      <!-- 视频列表 -->
+    <div class="mn-list-wrap" id="liveList">
+      <ul class="clearfix" id="div_list">
+
+      </ul>
+    </div>
+    <!-- 视频列表 end-->
+
+    </div>
+    <!-- 游戏 end-->
+  </div>
+</body>
+<script type="text/x-dot-template" id="template">
+{{~ it.msg : value : index }}
+    <li onclick="openWin('{{= value. url }}')">
+      <div class="video-mask-box">
+        <img src="{{= value. img }}" alt="" class="game-pic">
+      </div>
+      <div class="til">{{= value. title }}</div>
+
+    </li>
+{{~}}
+</script>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/doT.js"></script>
+<script type="text/javascript">
+
+  apiready = function(){
+    api.showProgress({
+        title: '加载中...',
+        modal: false
+    });
+    var div_list = $api.byId('div_list');
+    var template = $api.byId('template');
+    api.ajax({
+        url: service_url+'/login/login/mnlist.html',
+        method: 'get'
+    },function(ret, err){
+        if (ret) {
+          //alert( JSON.stringify( ret ) );
+          var pagefn = doT.template(template.text);
+          div_list.innerHTML = pagefn(ret);
+          api.hideProgress();
+        } else {
+          api.hideProgress();
+            //alert( JSON.stringify( err ) );
+        }
+    });
+
+  }
+
+  function getList(){
+
+  }
+
+  function openWin(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id==0){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: 'login.html',
+          delay: 300
+      });
+      return;
+
+    }
+
+    if (time>timestamp) {
+
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
+
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: './h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
+
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '在想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: './open_vip_win.html',
+                delay: 300
+            });
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'alert'
+            });
+          }
+      });
+    }
+
+  }
+  function playRadio(){
+    api.hideProgress();
+  }
+
+</script>
+</html>

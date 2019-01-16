@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vip充值</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+</head>
+<body>
+
+  <div class="open-vip-t">
+    <div class="br"></div>
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-form-list">
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon-lock"></i>
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input id="kami" type="text" placeholder="在此处粘贴卡密">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="aui-content-padded">
+        <p><div class="aui-btn-tuichu aui-btn-block" tapmode onclick="loginOff()">立 即 开 通</div></p>
+    </div>
+  </div>
+
+  <div class="open-vip-b">
+    <div class="open-vip-b-box">
+      <div id="imgurl" class="open-vip-b-ka">
+        <img id="imgurl1" src="../image/yueka.png" tapmode onclick="openUrl1()">
+        <img id="imgurl2" src="../image/jika.png" tapmode onclick="openUrl2()">
+        <img id="imgurl3" src="../image/nianka.png" tapmode onclick="openUrl3()">
+        <img id="imgurl4" src="../image/yongjiu.png" tapmode onclick="openUrl4()">
+      </div>
+      <div id="hqkmi" class="open-vip-b-text" style="">
+      <font size="4" > <b>点击上面购卡，获取卡密成功后<br/> &nbsp;&nbsp;回到本页，提交卡密充值！</b></font>
+      </div><br/>
+			<!-- <div  id ="jyhx"  class="aui-list-item-input">
+			  <input id="jiaoyh" type="text" placeholder="在此输入微信,支付宝交易订单号">
+			</div>
+			<label id="tishi" style="display:none"></label>
+			<p><input type="submit" class="aui-btn-tuichu aui-btn-block"  value="提交"   onclick="tjbh()"></p> -->
+      <div id="weichat" class="open-vip-b-kefu">
+          有问题请联系客服微信：
+      </div>
+			<label id="tishi" style="display:none"></label>
+    </div>
+  </div>
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+ <script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript">
+    var user_id = localStorage.getItem('user_id');
+		var glqq = localStorage.getItem('glqqkf');
+    apiready = function(){
+      api.parseTapmode();
+      // newLoingdata();
+			weichat.innerHTML='有问题请联系客服微信:'+glqq;
+      var clipBoard = api.require('clipBoard');
+      clipBoard.get(function(ret, err) {
+          if (ret) {
+
+            if (ret.value.length == 15) {
+              var kami = $api.byId('kami');
+              kami.value = ret.value;
+              api.toast({
+                  msg: '已帮您自动粘贴刚刚复制的内容',
+                  duration: 4000,
+                  location: 'middle'
+              });
+            }
+          } else {
+
+          }
+      });
+
+
+    }
+
+    /* function newLoingdata(){
+      api.ajax({
+          url: service_url+'/login/login/veifys.html',
+          method: 'get',
+          data: {
+              values: {
+                  username: localStorage.getItem('user_name'),
+                  passwd: localStorage.getItem('password'),
+                  imei:api.deviceId
+              }
+          }
+      },function(ret, err){
+          if (ret) {
+            if (ret.code == 0) {
+              alert('出错了，请尝试重新登录');
+              return;
+            }else if (ret.code == 1) {
+                localStorage.setItem('user_id',ret.msg['id']);
+                localStorage.setItem('user_time',ret.msg['time']);
+                localStorage.setItem('user_share',ret.msg['share']);
+                localStorage.setItem('user_advert',ret.msg['advert']);
+              /*localStorage.setItem('user_code',ret.msg['code']);
+                localStorage.setItem('user_weichat',ret.msg['weichat']);
+                localStorage.setItem('url',ret.msg['url']);
+                localStorage.setItem('url1',ret.msg['url1']);
+                localStorage.setItem('url2',ret.msg['url2']);
+                localStorage.setItem('url3',ret.msg['url3']);
+                localStorage.setItem('url4',ret.msg['url4']);
+                var weichatdiv = $api.byId('weichat');
+                api.sendEvent({
+                  name: 'newLoingdata',
+                  extra: {
+                  }
+                });
+            }
+          } else {
+            alert('网络错误！');
+            return;
+          }
+      });
+    } */
+
+
+    function openUrl1(){
+      api.openWin({
+      		name: 'url30',
+      		url: './url30.html',
+      		delay: 300,
+      });
+    }
+    function openUrl2(){
+      api.openWin({
+      		name: 'url90',
+      		url: './url90.html',
+      		delay: 300,
+      });
+    }
+    function openUrl3(){
+      api.openWin({
+      		name: 'url365',
+      		url: './url365.html',
+      		delay: 300,
+      });
+    }
+    function openUrl4(){
+      api.openWin({
+      		name: 'url1000',
+      		url: './url1000.html',
+      		delay: 300,
+      });
+    }
+		//......
+
+	function sjmp() {
+			var now = new Date();
+			var year = now.getFullYear();
+			var month = now.getMonth();
+			var date = now.getDate();
+			month = month + 1;
+			if (month < 10) month = "0" + month;
+			if (date < 10) date = "0" + date;
+			var time = "";
+			time = year + "-" + month + "-" + date;
+		  return time;
+		}
+//提交
+ function tjbh(){
+ 		 		var jiaoybh = document.querySelector('#jiaoyh').value;
+						var bsanhx = localStorage.getItem('bsanh');
+						var beatit = localStorage.getItem('beatit');
+						if (beatit==10){
+						}else{
+							alert('请先充值再提交!');
+							return;
+						}
+						if (bsanhx==1){
+							alert('今天已经充值了，请24小时之后再充！');
+							return;
+						}
+						if(jiaoybh.length!==36&&jiaoybh.length!==28){
+							alert('交易订单号有误，请重新提交');
+							return;
+								}
+						if(/^[0-9]+$/.test(jiaoybh))
+						{
+								}else{
+									alert('交易订单号有误');
+									return;
+								}
+						if (jiaoybh.length==36){
+								var wxstr=sjmp();
+								wxstr = wxstr.replace("-","");
+								wxstr = wxstr.replace("-","");
+								wxstr = wxstr.substr(4, 4);
+								var wxbhbl = jiaoybh;
+								wxbhbl = wxbhbl.substr(12, 4);
+								if(wxbhbl!==wxstr){
+									alert ('无效的数据');
+									return;
+								}
+						}
+						if (jiaoybh.length==28){
+								var zfstr=sjmp();
+								zfstr = zfstr.replace("-","");
+								zfstr = zfstr.replace("-","");
+								zfstr = zfstr.substr(0, 8);
+								var zfbhbl = jiaoybh;
+								zfbhbl = zfbhbl.substr(0, 8);
+								if(zfbhbl!==zfstr){
+									alert ('无效的数据');
+									return;
+								}
+						}
+						var ajax = new XMLHttpRequest();
+						ajax.open('post',service_url+'/appx/chongz.php');//
+						ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+ 		 				var userid = user_id;
+						var shuji = localStorage.getItem('vipka');
+ 		 				var student = new Object();
+ 		 				student.id = userid;
+						student.age = shuji;
+ 		 				var json = JSON.stringify(student);
+ 		 				ajax.send('json='+json);
+						ajax.onreadystatechange = function(){
+													if (ajax.readyState ==4&&ajax.status==200) {
+															console.log(ajax.responseText);
+															var show = document.querySelector('#tishi');
+																	show.style.display='block';
+																	show.style.height='5em';
+																	show.style.textAlign="center";
+																	show.innerHTML=ajax.responseText;
+															if (ajax.responseText=="exist") {
+																	show.innerHTML='该用户已经注册了！'
+															} else{
+																	show.innerHTML= '您的刚刚获取的卡密是：' +ajax.responseText +'<br/>';
+																	document.getElementById('jyhx').innerHTML = "";
+																	document.getElementById('hqkmi').innerHTML = "已为您复制，请粘贴到上面立即开通!";
+
+																	var clipBoard = api.require('clipBoard');
+																	clipBoard.set({
+																		value: ajax.responseText
+																	}, function(ret, err) {
+																				if (ret) {
+																   api.toast({
+																		msg: '已复制号码到剪切板',
+																		duration: 2000
+																       });
+																					} else {
+
+																			  }
+																	});
+
+															}
+													}
+												};
+												 localStorage.setItem("bsanh",'1');
+												 alert("恭喜您获得vip卡密,已复制可直接粘贴"+ajax.responseText);
+
+ }
+    //访问地址
+    function toBanner(url){
+      var sys = api.systemType;
+      if (sys == 'ios') {
+        if (url == '') {
+          keFu();
+          return;
+        }else {
+          api.openApp({
+                 iosUrl: url
+         },function(ret,err){
+         });
+        }
+      }else {
+        // if (url == '') {
+        //
+        // }else {
+        //   api.openApp({
+        //       androidPkg: 'android.intent.action.VIEW',
+        //       mimeType: 'text/html',
+        //       uri: url
+        //   }, function(ret, err) {
+        //       // if (ret) {
+        //       //     alert(JSON.stringify(ret));
+        //       // } else {
+        //       //     alert(JSON.stringify(err));
+        //       // }
+        //   });
+        //
+        // }
+        if (url == '') {
+          keFu();
+          return;
+        }else {
+          api.openWin({
+              name: 'h5',
+              url: './h5.html',
+              pageParam: {
+                  url: url
+              }
+          });
+        }
+
+      }
+
+      // if (url == '') {
+      //
+      // }else {
+      //   api.openWin({
+      //       name: 'h5',
+      //       url: './h5.html',
+      //       pageParam: {
+      //           url: url
+      //       }
+      //   });
+      // }
+    }
+
+   /* function keFu(){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '请联系客服QQ: 654654649',
+              leftBtnTitle: '知道了',
+              rightBtnTitle: '复制'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 16
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            var clipBoard = api.require('clipBoard');
+            clipBoard.set({
+                value: '654654649'
+            }, function(ret, err) {
+                if (ret) {
+                  api.toast({
+                      msg: '已复制号码到剪切板',
+                      duration: 2000
+                  });
+                  var dialogBox = api.require('dialogBox');
+                  dialogBox.close({
+                      dialogName: 'alert'
+                  });
+                } else {
+
+                }
+            });
+          }
+      });
+    } */
+
+
+    //充值点卡
+    function loginOff(){
+      var kami = $api.val($api.byId('kami'));
+      if(kami == ''){
+        api.alert({
+            title: '调皮~',
+            msg: '请输入卡密',
+        });
+        return;
+      }
+      if (user_id<1) {
+        alert('请先登录');
+        api.openWin({
+            name: 'login',
+            url: './login.html',
+        });
+        return;
+      }else {
+        api.showProgress({
+            title: '登陆中...',
+            text: '请稍等...',
+            modal: false
+        });
+        api.ajax({
+            url: service_url+'/login/login/dianka.html',
+            method: 'get',
+            data: {
+                values: {
+                    uid: localStorage.getItem('user_id'),
+                    dianka: kami,
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+                if (ret.code == 0) {
+                  api.hideProgress();
+                  api.alert({
+                      title: '哎哟~',
+                      msg: ret.msg,
+                  });
+                  return;
+                }else if (ret.code == 1) {
+                  api.hideProgress();
+                  api.alert({
+                      title: '恭喜!',
+                      msg: '充值成功',
+                  });
+
+                  localStorage.setItem('user_time',ret.lasttime);
+                  api.sendEvent({
+                    name: 'newLoingdata',
+                    extra: {
+                    }
+                  });
+                  api.closeWin();
+
+                }
+
+            } else {
+              api.hideProgress();
+              api.alert({
+                  title: '糟糕~',
+                  msg: '网络似乎有点问题',
+              });
+            }
+        });
+
+      }
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>收支明细</title>
+		<style type="text/css">
+					.testx{float: left;width:100%;}
+					.test{ background:forestgreen;margin: 2px;width:100%;}
+					.test ul{list-style:none;height: 45px;background: #fff;margin: 0;padding: 0; width:100%;}
+					.test li{float:left;width:auto;margin-right:15px;margin-left: 5px; pabackground: #F8F8FF; color:#008B8B; line-height: 45px;text-align: center;}
+		</style>
+</head>
+<body onload="load()">
+	<label id="tishi" style="display:none;text-align: center;font-size: 1.2rem;color: #F96060;margin: 5px;"></label>
+   <div id="textx" class="testx">
+   </div>
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript">
+	function load(){
+	      var ajax = new XMLHttpRequest();
+	      ajax.open('post',service_url+'/appx/caiwulog.php');
+	      ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	      var userid = localStorage.getItem('user_id');
+	      var student = new Object();
+	      student.id = userid;
+	      var json = JSON.stringify(student);
+	      ajax.send('json='+json);
+	      ajax.onreadystatechange = function(){
+	        if (ajax.readyState ==4&&ajax.status==200) {
+	            console.log(ajax.responseText);
+	            var show = document.querySelector('#tishi');
+	                show.style.display='block';
+									 var data =ajax.responseText;
+									 var result=eval("("+data+")");
+									function sjcl(timex){
+										 var d = new Date(timex * 1000);
+										 timex=d.toISOString();
+										 var pattern2 = ".000Z";
+										 timex = timex.replace(new RegExp(pattern2), "");
+										 timex = timex.replace(/T/, " ");
+										 timex = timex.substring(5,10);
+										 	return(timex);
+										 	}
+											var shuchu ='';
+											var moneyx =0;
+								 	function sjcltype(blx){
+										if (blx==30){
+											blx='徒弟充值月卡';
+										}else if (blx==90){
+											blx='徒弟充值季卡';
+											}else if(blx==365){
+												blx='徒弟充值年卡';
+											}else if(blx==1000){
+												blx='徒弟充永久卡';
+											}else if(blx==2000){
+												blx='徒弟充值代理';
+											}else if(blx==1){
+												blx='注册红包';
+											}
+											return (blx);
+											}
+
+									function sjcljq(jqian){
+									 var qianx = jqian;
+                    var qianx = qianx.substring(0,qianx.length-4);
+									var qiany = jqian;
+									var qiany = qiany.substring(qiany.length-4);
+									var blyy ='金币';
+												 	if (qiany=='yuan'){
+														qiany='元';
+														blyy ='';
+													}
+										var	jqian=qianx+qiany+blyy;
+											return (jqian);
+									}
+
+										 for(var i=0;i<result.length;i++){
+	                  var str= '<div class="test">'+'<ul>'+'<li>'+'<font size=4>'+result[i][0].substr(0,3)+'**'+result[i][0].substr(7)+'</li>'+
+	                  			'<li>'+sjcl(result[i][2])+'</li>'+
+	                  			'<li>'+sjcltype(result[i][1])+'</li>'+
+	                  			'<li>'+'<font color=red>'+sjcljq(result[i][3])+'</font>'+'</li>'+'</ul>'+'</div>'
+													shuchu += str;
+													moneyx = moneyx + Number(result[i][3]);
+	                         }
+													 var shuchu =shuchu;
+													 textx.innerHTML=shuchu;
+
+
+	     show.innerHTML='您最近的收支明细';
+
+	    }
+
+	   };
+	}
+
+</script>
+</html>

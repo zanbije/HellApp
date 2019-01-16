@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	body{
+
+    	}
+    	.content{
+    		width:100%;
+    		height:100px;
+    		margin-top:0px;
+    		background:white;
+    	}
+    </style>
+</head>
+<body>
+  <header class="aui-bar aui-bar-nav" id="aui-header" style="background:#fdca00">
+      <a class="aui-btn aui-pull-left" style="color:#FFF" tapmode onclick="closeWin()">
+        <span class="aui-iconfont aui-icon-left" style="color:#FFF"></span>
+    </a>
+    <a class="aui-btn aui-pull-right" style="color:#FFF" tapmode onclick="clearR()">
+        清空
+    </a>
+      <div id="title" class="aui-title" style="color:#FFF">观看记录</div>
+  </header>
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/date.min.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		 var header = $api.byId('aui-header');
+      	$api.fixStatusBar(header);
+      	var headerPos = $api.offset(header);
+      	//alert(headerPos.h);
+      	api.openFrame({
+	          name: 'look_record_list',
+	          url: 'look_record_list.html',
+	          rect: {
+		          x:0,
+		          y:headerPos.h,
+		          w:"auto",
+		          h:"auto"
+	          }
+          });
+          //alert(localStorage.getItem('user_id'));
+	};
+
+	function clearR(){
+
+		api.ajax({
+	        url:service_url+'/login/login/deljilu?uid=' + localStorage.getItem('user_id')
+        },function(ret,err){
+        	//coding...
+        });
+        api.execScript({
+        	frameName: "look_record_list",
+	        script: 'update();'
+        });
+	}
+
+	function closeWin(){
+		api.closeWin();
+	}
+	//alert(new Date().format('yyyy-MM-dd hh:mm:ss'));
+</script>
+</html>

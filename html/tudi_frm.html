@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的徒弟</title>
+    <!-- <link rel="stylesheet" type="text/css" href="../css/aui.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../css/style.css"/> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/> -->
+		<style type="text/css">
+					.testx{float: left;width:100%;}
+					.test{ background:forestgreen;margin: 2px;width:100%;}
+					.test ul{list-style:none;height: 45px;background: #fff;margin: 0;padding: 0; width:100%;}
+					.test li{float:left;width:33%;margin: 0 auto;background: #F8F8FF; color:#008B8B; line-height: 45px;text-align: center;}
+		</style>
+</head>
+<body onload="load()">
+   <div id="textx" class="testx">
+		<label id="tishi" style="display:none;text-align: center;font-size: 1.2rem;color: #F96060;margin: 5px;"></label>
+  	<div id="t1" class="test"></div>
+  	<div id="t2" class="test"></div>
+  	<div id="t3" class="test"></div>
+  	<div id="t4" class="test"></div>
+  	<div id="t5" class="test"></div>
+  	<div id="t6" class="test"></div>
+  	<div id="t7" class="test"></div>
+  	<div id="t8" class="test"></div>
+  	<div id="t9" class="test"></div>
+  	<div id="t10" class="test"></div>
+  	<div id="t11" class="test"></div>
+  	<div id="t12" class="test"></div>
+  	<div id="t13" class="test"></div>
+  	<div id="t14" class="test"></div>
+  	<div id="t15" class="test"></div>
+   </div>
+
+
+</body>
+<script type="text/javascript" src="../js/public.js" ></script>
+<script type="text/javascript">
+
+	function load(){
+
+	      var ajax = new XMLHttpRequest();
+
+	      ajax.open('post',service_url+'/appx/tudi.php');
+
+	      ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				var shuji=Number(888);
+	      var userid = localStorage.getItem('user_id');
+				var stjbx = localStorage.getItem('stdejb');
+	      var student = new Object();
+	      student.id = userid;
+	      student.age = shuji;
+	      var json = JSON.stringify(student);
+	      ajax.send('json='+json);
+	      ajax.onreadystatechange = function(){
+	        if (ajax.readyState ==4&&ajax.status==200) {
+	            console.log(ajax.responseText);
+	            var show = document.querySelector('#tishi');
+	                show.style.display='block';
+									 var data =ajax.responseText;
+									  var result=eval("("+data+")");
+	                   // alert(result);
+
+										 function sjcl(timex){
+										 var d = new Date(timex * 1000);
+										 timex=d.toISOString();
+										 var pattern2 = ".000Z";
+										 timex = timex.replace(new RegExp(pattern2), "");
+										 timex = timex.replace(/T/, " ");
+										 timex = timex.substring(0,10);
+										 	return(timex);
+										 	}
+										 for(var i=0;i<result.length;i++){
+	                  var str='<ul>'+
+	                        '<li>'+'<font size=4>'+result[i][0].substr(0,3)+'**'+result[i][0].substr(7)+'</font>'+'</li>'+
+	                        '<li>'+sjcl(result[i][1])+'</li>'+
+													'<li>'+'<font color=red>'+stjbx+'金币'+'</font>'+'</li>'+'</ul>'
+													switch (i)
+	{
+	case 0:
+	 t1.innerHTML=str;
+	  break;
+	case 1:
+	 t2.innerHTML=str;
+	  break;
+	case 2:
+	 t3.innerHTML=str;
+	  break;
+	case 3:
+	 t4.innerHTML=str;
+	  break;
+	case 4:
+	 t5.innerHTML=str;
+	  break;
+	case 5:
+	 t6.innerHTML=str;
+	  break;
+	case 6:
+	  t7.innerHTML=str;
+	  break;
+	case 7:
+		t8.innerHTML=str;
+		break;
+	case 8:
+		t9.innerHTML=str;
+		break;
+	case 10:
+		t11.innerHTML=str;
+		break;
+	case 11:
+		t12.innerHTML=str;
+		break;
+	case 12:
+		t13.innerHTML=str;
+		break;
+	case 13:
+	  t14.innerHTML=str;
+		break;
+	case 14:
+		t15.innerHTML=str;
+		break;
+	}
+
+	}
+	  var con=result.length;
+		localStorage.setItem('tud',con);
+		if (con==0){
+			show.innerHTML='啊奥!您有'+ con+'位徒弟  '+'共获得'+con*stjbx+'金币';
+		}else{
+	  show.innerHTML='恭喜!您有'+ con+'位徒弟  '+'共获得'+con*stjbx+'金币';
+	     }
+
+	    }
+
+	   };
+	}
+
+</script>
+</html>
